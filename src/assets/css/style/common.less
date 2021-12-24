@@ -1,0 +1,132 @@
+@charset 'UTF-8';
+
+html {
+    background-color: #fff;
+    text-size-adjust: 100%;
+}
+
+html * {
+    box-sizing: border-box;
+    word-wrap: break-word;
+    word-break: break-all;
+    outline: none;
+    text-size-adjust: none;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB","微软雅黑",Arial,sans-serif;
+}
+
+input,
+select,
+textarea {
+    border-radius: 0;
+    outline: none;
+    border: none;
+    background: transparent;
+    appearance: none;
+}
+
+button {
+    border: none;
+}
+
+input,
+select {
+    vertical-align: middle;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+a,
+a:link,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: #000;
+}
+b{
+    font-weight: 400;
+}
+/*  */
+input:-webkit-autofill,select:-webkit-autofill,textarea:-webkit-autofill{
+    -webkit-text-fill-color:#FFFFFF !important;
+    -webkit-box-shadow:0 0 0 1000px #282C38 inset!important;
+    box-shadow:0 0 0 1000px #282C38 inset!important;
+    background-color:#282C38 !important;
+    background-image:none;
+    -webkit-transition:background-color 50000s ease-in-out 0s;
+    transition:background-color 50000s ease-in-out 0s;
+    caret-color: #fff;
+}
+input{background-color:transparent}
+/*float*/
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.xmy_clearfix:after {
+    font-size: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+    content: '\20';
+}
