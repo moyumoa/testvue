@@ -158,6 +158,7 @@ export default {
       let data = {
         phone: _this.login_mobile,
         password: md5(_this.login_password),
+        loginType: 2
       }
       api.loginAccount(data).then(res=>{
         localsStore.set('USERTOKEN', res.data.tokenValue);
