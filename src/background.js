@@ -26,7 +26,7 @@ async function createWindow() {
     height: 460,
     // width: 880,
     // height: 920,
-    icon: path.join(__dirname,'./public/icon.ico'),
+    icon: path.join(__dirname,'../public/icon.ico'),
     resizable: false,
     frame: process.platform=='darwin'?true:false,
     webPreferences: {
