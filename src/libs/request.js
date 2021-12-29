@@ -16,7 +16,7 @@ const service = axios.create({
 service.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 
 const pending = [] // 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
-const whiteList = ['/sv/material/upload'] // 不取消的接口list
+const whiteList = ['/sumvideo/sv/material/upload'] // 不取消的接口list
 const CancelToken = axios.CancelToken
 const removePending = ever => {
   for (const p in pending) {
@@ -43,6 +43,7 @@ service.interceptors.request.use(
     }
     // 白名单内的接口可重复请求
     if (whiteList.indexOf(config.url) === -1) {
+      // console.log(config.url)
       removePending(config) // 在一个ajax发送前执行一下取消操作
       config.cancelToken = new CancelToken(c => {
         // 这里的ajax标识我是用请求地址&请求方式拼接的字符串，当然你可以选择其他的一些方式

@@ -21,10 +21,10 @@ let mainWindow
 async function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 440,
-    height: 460,
-    // width: 880,
-    // height: 920,
+    // width: 440,
+    // height: 460,
+    width: 880,
+    height: 920,
     resizable: false,
     frame: false,
     webPreferences: {
@@ -40,9 +40,11 @@ async function createWindow() {
   //解决10.X版本跨域不成功问题(上线删除)
   app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors');
   //去掉顶部菜单
-  mainWindow.setMenu(null);  
-  //  自定义菜单
-  scaleWindow(ipcMain,mainWindow)
+  if (process.platform === 'win32'){
+    mainWindow.setMenu(null);  
+    //  自定义菜单
+    scaleWindow(ipcMain,mainWindow)
+  }
   // 自动更新事件
   await handleUpdate(mainWindow)
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="myHeader_wrap" :class="this.$store.state.blueHead?'blue':''">
+    <div v-if="!isMac" class="myHeader_wrap" :class="this.$store.state.blueHead?'blue':''">
         <div class="menu_wrap" v-if="!this.$store.state.blueHead">
             <div class="minimize_wrap" @click="min">
                 <img src="@/assets/imgs/min_window.png" alt="">
@@ -17,13 +17,14 @@
             </div>
         </div>
     </div>
+    <div v-else class="mac_myHeader_wrap" :class="this.$store.state.blueHead?'blue':''"></div>
 </template>
 <script>
 const ipcRenderer = require('electron').ipcRenderer
 export default {
     data() {
         return {
-
+            isMac: false
         }
     },
     methods:{
@@ -35,7 +36,11 @@ export default {
         }
     },
     created(){
-        
+        if(process.platform=='darwin'){
+            this.isMac = true
+        }else{
+            this.isMac = false
+        }
     },
     mounted(){
 
@@ -85,5 +90,9 @@ export default {
                 }
             }
         }
+    }
+    .mac_myHeader_wrap{
+        width: 100%;
+        height: 16px;
     }
 </style>

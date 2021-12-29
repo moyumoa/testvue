@@ -17,7 +17,7 @@ export default {
   delCreate: (param) => {
     return service.get(`/sumvideo/sv/factory/delete?id=${param}`)
   },
-  // 删除创意
+  // 上传创意
   uploadFile: (param) => {
     return service.post('/sumvideo/sv/material/upload', param)
   },
