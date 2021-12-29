@@ -21,12 +21,12 @@ let mainWindow
 async function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    // width: 440,
-    // height: 460,
-    width: 880,
-    height: 920,
+    width: 440,
+    height: 460,
+    // width: 880,
+    // height: 920,
     resizable: false,
-    frame: false,
+    frame: process.platform=='darwin'?true:false,
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone
