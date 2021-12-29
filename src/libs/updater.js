@@ -39,7 +39,11 @@ export function handleUpdate(mainWindow) {
     }
     // 修改地址
     // autoUpdater.setFeedURL('http://localhost:3000/public');
-    autoUpdater.setFeedURL('http://test.video.sumlive.cn/update/');
+    if(isMac){
+      autoUpdater.setFeedURL('http://test.video.sumlive.cn/update/mac/')
+    }else{
+      autoUpdater.setFeedURL('http://test.video.sumlive.cn/update/');
+    }
     //更新错误
     autoUpdater.on('error', function (error) {
       sendUpdateMessage(mainWindow,returnData.error,error)
