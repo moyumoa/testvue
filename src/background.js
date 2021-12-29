@@ -8,6 +8,7 @@ Store.initRenderer()
 // 更新
 import { handleUpdate } from './libs/updater.js';
 import { scaleWindow } from './libs/ipcMain';
+const path = require('path')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const baseUrl = process.env.VUE_APP_BASE_API
@@ -25,6 +26,7 @@ async function createWindow() {
     height: 460,
     // width: 880,
     // height: 920,
+    icon: path.join(__dirname,'./public/icon.ico'),
     resizable: false,
     frame: process.platform=='darwin'?true:false,
     webPreferences: {

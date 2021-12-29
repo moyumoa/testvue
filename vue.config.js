@@ -33,7 +33,10 @@ module.exports = {
           createStartMenuShortcut: true,
           deleteAppDataOnUninstall: true,
           artifactName: '${productName}-${version}.${ext}',
-          include: 'installer.nsh'
+          include: 'installer.nsh',
+          installerIcon: "./public/icon.ico", // 安装图标
+          uninstallerIcon: "./public/icon.ico", //卸载图标
+          installerHeaderIcon: "./public/icon.ico", // 安装时头部图标
         },
         protocols: [{
           name: 'sumvideo-client',
@@ -41,10 +44,12 @@ module.exports = {
         }],
       },
       win:{
+        icon: "./public/icon.ico",
         target: [{ target: 'nsis', arch: ['ia32', 'x64'] }]
       },
-      
-      
+      mac: {
+        icon: './public/icon.icns'
+      }
     }
   }
 }

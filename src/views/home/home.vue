@@ -299,6 +299,9 @@ export default {
                                 type: 'error',
                                 duration: 3000
                             })
+                            _this.loadingStep = 1
+                            _this.loadingShow = false
+                            _this.loadingPercent = 0
                             return;
                         }
                         let blob = new Blob([new Int8Array(data)])
@@ -316,6 +319,10 @@ export default {
                                     this.loadingPercent = 0
                                 }, 1000);
                             }
+                        }).catch(()=>{
+                            _this.loadingStep = 1
+                            _this.loadingPercent = 0
+                            _this.loadingShow = false
                         })
                     })
                 })
