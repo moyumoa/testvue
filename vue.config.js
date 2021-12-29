@@ -37,6 +37,7 @@ module.exports = {
           installerIcon: "./public/icon.ico", // 安装图标
           uninstallerIcon: "./public/icon.ico", //卸载图标
           installerHeaderIcon: "./public/icon.ico", // 安装时头部图标
+          shortcutName: "demo", // 图标名称
         },
         protocols: [{
           name: 'sumvideo-client',
