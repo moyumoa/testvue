@@ -25,4 +25,8 @@ export default {
   getPipelineCreate: (param) => {
     return service.get(`/sumvideo/sv/factory/path?pipelineId=${param}`)
   },
+  // 获取品牌列表
+  getBrandList: (param) => {
+    return service.get('/sumvideo/sv/sys/list/brand',param)
+  },
 }

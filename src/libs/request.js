@@ -38,8 +38,12 @@ service.interceptors.request.use(
     isLogin = config.isLogin
     // localStorage.getItem('USERTOKEN')
     let token = store.get('USERTOKEN');
+    let brandId = store.get('brandInfo') ? store.get('brandInfo').brandId : null;
+    let userId = store.get('userInfo') ? store.get('userInfo').userId : null;
     if (token) {
       config.headers.token = token
+      config.headers.brandId = brandId
+      config.headers.userId = userId
     }
     // 白名单内的接口可重复请求
     if (whiteList.indexOf(config.url) === -1) {

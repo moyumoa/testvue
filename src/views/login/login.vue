@@ -161,8 +161,10 @@ export default {
         loginType: 2
       }
       api.loginAccount(data).then(res=>{
+        // console.log(res)
         localsStore.set('USERTOKEN', res.data.tokenValue);
         localsStore.set('USERNAME', res.data.userName);
+        localsStore.set('userInfo', res.data);
         // localsStore.set('USERPHONE', res.data.userPhone);
         _this.$router.push({ name: "home" });
       }).catch(res=>{

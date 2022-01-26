@@ -1,13 +1,24 @@
 <template>
     <div class="home_wrapper" @click="hidden">
         <div class="head_wrap">
-            <h4 class="name">{{userName}}</h4>
+            <!-- <h4 class="name">{{userName}}</h4> -->
+            <div class="brand_wrap" @click="showBrand">
+                <span>{{selectedBrand.brandName}}</span>
+                <img src="@/assets/imgs/brand-select.png" alt="">
+            </div>
+            <div class="brand_select" v-if="isChangeBrand">
+                <span v-for="brandItem in brandList" :key="brandItem.brandId"
+                :class="selectedBrand.brandId===brandItem.brandId?'brand_item_active':''"
+                @click="changeBrand(brandItem)">
+                {{brandItem.brandName}}
+                </span>
+            </div>
             <img class="logo" src="@/assets/imgs/video-icon.png" alt="">
             <img class="name_logo" src="@/assets/imgs/name-logo.png" alt="">
         </div>
         <div class="home_container">
             <div class="form_wrap">
-                <div class="form_item" :class="showPipeline?'form_item_active':''" @click.stop="clickPipeline">
+                <!-- <div class="form_item" :class="showPipeline?'form_item_active':''" @click.stop="clickPipeline">
                     <div class="input_wrap">
                         <span>流水线</span>
                         <b></b>
@@ -24,7 +35,7 @@
                             <h4 v-for="item in pipelineList" :key="item.id" @click="selectPipeline(item)">{{item.name}}</h4>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="form_item" :class="showCreat?'form_item_active':''" @click.stop="clickCreat">
                     <div class="input_wrap">
                         <span>创意</span>
@@ -131,7 +142,10 @@ export default {
             loadingShow: false,
             loadingPercent: 0,
             loadingStep: 1,
-
+            // 品牌
+            brandList: [],
+            selectedBrand: {},
+            isChangeBrand: false,
         }
     },
     methods:{
@@ -190,14 +204,14 @@ export default {
         },
         // 判断创意是否存在，添加创意
         addCreate(){
-            if(!this.pipelineId){
-                this.$message({
-                    message: '请选择流水线',
-                    type: 'error',
-                    duration: 3000
-                })
-                return;
-            }
+            // if(!this.pipelineId){
+            //     this.$message({
+            //         message: '请选择流水线',
+            //         type: 'error',
+            //         duration: 3000
+            //     })
+            //     return;
+            // }
             let _this = this
             dialog.showOpenDialog({
                 defaultPath: _this.jsonUrl,
@@ -224,7 +238,7 @@ export default {
                     }
                     const fileFormData = new FormData();
                     fileFormData.append("file", jsonFile);
-                    fileFormData.append("pipelineId", this.pipelineId);
+                    // fileFormData.append("pipelineId", this.pipelineId);
                     this.fileFormData = fileFormData
                     api.checkCreate(fileFormData).then((res)=>{
                         this.showTipDialog = res.data
@@ -267,21 +281,21 @@ export default {
         },
         // 上传文件
         uploadFile(){
-            if(!this.pipelineId){
-                this.$message({
-                    message: '请选择流水线',
-                    type: 'error',
-                    duration: 3000
-                })
-                return;
-            }else if(this.createList.length<=0){
-                this.$message({
-                    message: '请添加创意',
-                    type: 'error',
-                    duration: 3000
-                })
-                return;
-            }
+            // if(!this.pipelineId){
+            //     this.$message({
+            //         message: '请选择流水线',
+            //         type: 'error',
+            //         duration: 3000
+            //     })
+            //     return;
+            // }else if(this.createList.length<=0){
+            //     this.$message({
+            //         message: '请添加创意',
+            //         type: 'error',
+            //         duration: 3000
+            //     })
+            //     return;
+            // }
             this.loadingShow = true
             this.loadingPercent = 0
             let allLength = 0
@@ -334,6 +348,25 @@ export default {
             this.loadingStep = 2
             this.reload()
         },
+        // 获取品牌列表
+        getBrandList(){
+            api.getBrandList().then(res=>{
+                console.log(res)
+                this.brandList = res.data
+                _store.set('brandInfo', res.data[0]);
+                this.selectedBrand = res.data[0]
+            })
+        },
+        // 
+        showBrand(){
+            this.isChangeBrand = !this.isChangeBrand
+        },
+        // 
+        changeBrand(item){
+            _store.set('brandInfo', item);
+            this.selectedBrand = item
+            this.isChangeBrand = false
+        }
     },
     mounted(){
         const os = require ('os');
@@ -343,6 +376,7 @@ export default {
             this.jsonUrl = os.homedir+'/library/containers/com.lemon.lvpro/data/movies/jianyingpro/user data/projects/com.lveditor.draft'
         }
         this.version = process.version
+        this.getBrandList()
     }
 }
 </script>
