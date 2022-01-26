@@ -45,7 +45,6 @@ module.exports = {
         }],
       },
       win:{
-        icon: "./public/icon.ico",
         target: [{ target: 'nsis', arch: ['ia32', 'x64'] }]
       },
       mac: {
