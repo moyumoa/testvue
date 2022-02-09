@@ -40,9 +40,9 @@ export function handleUpdate(mainWindow) {
     // 修改地址
     // autoUpdater.setFeedURL('http://localhost:3000/public');
     if(isMac){
-      autoUpdater.setFeedURL('http://test.video.sumlive.cn/update/mac/')
+      autoUpdater.setFeedURL('https://test.tagvv.com/download/mac/')
     }else{
-      autoUpdater.setFeedURL('http://test.video.sumlive.cn/update/');
+      autoUpdater.setFeedURL('https://test.tagvv.com/download/windows/');
     }
     //更新错误
     autoUpdater.on('error', function (error) {
