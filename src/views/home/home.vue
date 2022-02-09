@@ -2,7 +2,7 @@
     <div class="home_wrapper" @click="hidden">
         <div class="head_wrap">
             <!-- <h4 class="name">{{userName}}</h4> -->
-            <div class="brand_wrap" @click="showBrand">
+            <div class="brand_wrap" @click.stop="showBrand">
                 <span>{{selectedBrand.brandName}}</span>
                 <img src="@/assets/imgs/brand-select.png" alt="">
             </div>
@@ -154,6 +154,7 @@ export default {
             this.showPipeline = false
             this.showCreat = false
             this.showSet = false
+            this.isChangeBrand = false
         },
         // 展示流水线
         clickPipeline(){
@@ -288,14 +289,15 @@ export default {
             //         duration: 3000
             //     })
             //     return;
-            // }else if(this.createList.length<=0){
-            //     this.$message({
-            //         message: '请添加创意',
-            //         type: 'error',
-            //         duration: 3000
-            //     })
-            //     return;
-            // }
+            // }else 
+            if(this.createList.length<=0){
+                this.$message({
+                    message: '请添加创意',
+                    type: 'error',
+                    duration: 3000
+                })
+                return;
+            }
             this.loadingShow = true
             this.loadingPercent = 0
             let allLength = 0
@@ -325,7 +327,7 @@ export default {
                         api.uploadFile(uploadFormData).then(()=>{
                             // console.log(res)
                             uploadIndex = uploadIndex +1
-                            this.loadingPercent = (uploadIndex/allLength).toFixed(2)*100
+                            this.loadingPercent =Number((uploadIndex/allLength).toFixed(2)*100)
                             if(this.loadingPercent==100){
                                 setTimeout(() => {
                                     // this.loadingShow = false
@@ -350,16 +352,26 @@ export default {
         },
         // 获取品牌列表
         getBrandList(){
-            api.getBrandList().then(res=>{
-                console.log(res)
-                this.brandList = res.data
-                _store.set('brandInfo', res.data[0]);
-                this.selectedBrand = res.data[0]
-            })
+            if(!_store.get('brandInfo')){
+                api.getBrandList().then(res=>{
+                    // console.log(res)
+                    this.brandList = res.data
+                    _store.set('brandInfo', res.data[0]);
+                    this.selectedBrand = res.data[0]
+                })
+            }else{
+                api.getBrandList().then(res=>{
+                    // console.log(res)
+                    this.brandList = res.data
+                    this.selectedBrand = _store.get('brandInfo')
+                })
+            }
         },
         // 
         showBrand(){
-            this.isChangeBrand = !this.isChangeBrand
+            if(!this.loadingShow){
+                this.isChangeBrand = !this.isChangeBrand
+            }
         },
         // 
         changeBrand(item){
