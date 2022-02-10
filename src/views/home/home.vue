@@ -327,7 +327,7 @@ export default {
                         api.uploadFile(uploadFormData).then(()=>{
                             // console.log(res)
                             uploadIndex = uploadIndex +1
-                            this.loadingPercent =Number((uploadIndex/allLength).toFixed(2)*100)
+                            this.loadingPercent = Math.round((uploadIndex/allLength).toFixed(2)*100)
                             if(this.loadingPercent==100){
                                 setTimeout(() => {
                                     // this.loadingShow = false
