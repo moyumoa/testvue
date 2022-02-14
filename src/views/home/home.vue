@@ -246,6 +246,11 @@ export default {
                         if(!res.data){
                             api.addCreate(fileFormData).then(res=>{
                                 // console.log(res)
+                                // fs.readFile(res.data.path,(err,data)=>{
+                                //     if(err){
+                                        
+                                //     }
+                                // })
                                 this.createList.push(res.data)
                             })
                         }

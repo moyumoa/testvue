@@ -8,6 +8,7 @@ Store.initRenderer()
 // 更新
 import { handleUpdate } from './libs/updater.js';
 import { scaleWindow } from './libs/ipcMain';
+
 const path = require('path')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
