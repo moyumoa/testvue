@@ -29,4 +29,8 @@ export default {
   getBrandList: (param) => {
     return service.get('/sumvideo/sv/sys/list/brand',param)
   },
+  // 获取品牌信息
+  selectBrand: (param) => {
+    return service.post('/system/account/selectBrand',param)
+  },
 }

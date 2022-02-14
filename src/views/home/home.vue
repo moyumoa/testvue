@@ -131,7 +131,7 @@ export default {
             showCreat: false,
             showTipDialog: false,
             showSet: false,
-            userName: _store.get('USERNAME'),
+            userName: '',
             userPhone: '',
             version: '',
             // userPhone: _store.get('USERPHONE'),
@@ -359,18 +359,33 @@ export default {
         getBrandList(){
             if(!_store.get('brandInfo')){
                 api.getBrandList().then(res=>{
-                    // console.log(res)
+                    console.log(res)
                     this.brandList = res.data
                     _store.set('brandInfo', res.data[0]);
                     this.selectedBrand = res.data[0]
+                    this.getBrandUser(this.selectedBrand)
                 })
             }else{
                 api.getBrandList().then(res=>{
                     // console.log(res)
                     this.brandList = res.data
                     this.selectedBrand = _store.get('brandInfo')
+                    this.getBrandUser(this.selectedBrand)
                 })
             }
+        },
+        // 获取品牌登录信息
+        getBrandUser(item){
+            let _this = this
+            let data = {
+                brandId: item.brandId,
+                compannyCode: item.companyCode,
+                loginType: 2
+            }
+            api.selectBrand(data).then(res=>{
+                // console.log(res)
+                _this.userName = res.data.userBrandName
+            })
         },
         // 
         showBrand(){
@@ -383,6 +398,7 @@ export default {
             _store.set('brandInfo', item);
             this.selectedBrand = item
             this.isChangeBrand = false
+            this.getBrandUser(this.selectedBrand)
         }
     },
     mounted(){
