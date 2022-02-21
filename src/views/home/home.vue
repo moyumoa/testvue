@@ -18,7 +18,26 @@
         </div>
         <div class="home_container">
             <div class="form_wrap">
-                <!-- <div class="form_item" :class="showPipeline?'form_item_active':''" @click.stop="clickPipeline">
+                <div class="form_item">
+                    <div class="input_wrap">
+                        <span>归属</span>
+                        <b></b>
+                        <!-- 下拉框 -->
+                        <el-select
+                        v-model="belongValue"
+                        placeholder="请选择归属"
+                        >
+                            <el-option
+                            v-for="option in belongList"
+                            :key="option.value"
+                            :label="option.label"
+                            :value="option.value"
+                            ></el-option>
+                        </el-select>
+                        <img src="@/assets/imgs/select-icon.png" alt="">
+                    </div>
+                </div>
+                <div v-if="belongValue===1" class="form_item" :class="showPipeline?'form_item_active':''" @click.stop="clickPipeline">
                     <div class="input_wrap">
                         <span>流水线</span>
                         <b></b>
@@ -35,7 +54,7 @@
                             <h4 v-for="item in pipelineList" :key="item.id" @click="selectPipeline(item)">{{item.name}}</h4>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <div class="form_item" :class="showCreat?'form_item_active':''" @click.stop="clickCreat">
                     <div class="input_wrap">
                         <span>创意</span>
@@ -146,6 +165,9 @@ export default {
             brandList: [],
             selectedBrand: {},
             isChangeBrand: false,
+            // 归属
+            belongList: [{label:'流水线',value:1},{label:'企业创意',value:2},],
+            belongValue: null,
         }
     },
     methods:{
@@ -239,7 +261,9 @@ export default {
                     }
                     const fileFormData = new FormData();
                     fileFormData.append("file", jsonFile);
-                    // fileFormData.append("pipelineId", this.pipelineId);
+                    if(this.pipelineId){
+                        fileFormData.append("pipelineId", this.pipelineId);
+                    }
                     this.fileFormData = fileFormData
                     api.checkCreate(fileFormData).then((res)=>{
                         this.showTipDialog = res.data
@@ -287,14 +311,14 @@ export default {
         },
         // 上传文件
         uploadFile(){
-            // if(!this.pipelineId){
-            //     this.$message({
-            //         message: '请选择流水线',
-            //         type: 'error',
-            //         duration: 3000
-            //     })
-            //     return;
-            // }else 
+            if(this.belongValue===1&&(!this.pipelineId)){
+                this.$message({
+                    message: '请选择流水线',
+                    type: 'error',
+                    duration: 3000
+                })
+                return;
+            }else 
             if(this.createList.length<=0){
                 this.$message({
                     message: '请添加创意',

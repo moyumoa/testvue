@@ -38,7 +38,7 @@ service.interceptors.request.use(
     isLogin = config.isLogin
     // localStorage.getItem('USERTOKEN')
     let token = store.get('USERTOKEN');
-    let brandId = store.get('brandInfo') ? store.get('brandInfo').brandId : null;
+    let brandId = store.get('brandInfo') ? store.get('brandInfo').brandId : '37';
     let userId = store.get('userInfo') ? store.get('userInfo').userId : null;
     if (token) {
       config.headers.token = token
