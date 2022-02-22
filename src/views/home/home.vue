@@ -261,7 +261,7 @@ export default {
                     }
                     const fileFormData = new FormData();
                     fileFormData.append("file", jsonFile);
-                    if(this.pipelineId){
+                    if(this.pipelineId&&this.belongValue===1){
                         fileFormData.append("pipelineId", this.pipelineId);
                     }
                     this.fileFormData = fileFormData
