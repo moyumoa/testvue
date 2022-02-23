@@ -110,6 +110,15 @@ service.interceptors.response.use(
           redirect: router.currentRoute.fullPath
         }
       })
+    } else if(code === 403){
+      // 清除token
+      store.delete('USERTOKEN')
+      router.push({
+        path: '/login',
+        query: {
+          redirect: router.currentRoute.fullPath
+        }
+      })
     }else if(isLogin){
       return Promise.reject(response.data || {})
     }else {

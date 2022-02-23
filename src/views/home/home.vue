@@ -47,7 +47,7 @@
                     <div v-if="showPipeline" class="pipeline_wrap" @click.stop>
                         <div class="search_wrap">
                             <img class="search_img" src="@/assets/imgs/search-icon.png" alt="">
-                            <el-input v-model="searchName" maxlength="14"></el-input>
+                            <el-input @input="seachPipeline" v-model="searchName" maxlength="14"></el-input>
                             <img class="clear_img" src="@/assets/imgs/clear-icon.png" alt="">
                         </div>
                         <div class="pipeline_list">
@@ -208,6 +208,10 @@ export default {
                 // console.log(res)
                 this.pipelineList = res.data
             })
+        },
+        // 搜索
+        seachPipeline(){
+            this.getPipelineList()
         },
         // 选择流水线
         selectPipeline(item){
