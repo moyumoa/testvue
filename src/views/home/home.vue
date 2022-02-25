@@ -108,7 +108,7 @@
             <div v-if="showSet" class="setInfo_wrap">
                 <div class="setInfo_list" @click.stop>
                     <span class="name">{{userName}}</span>
-                    <span class="phone">{{userPhone}}</span>
+                    <span v-if="userPhone" class="phone">{{userPhone}}</span>
                     <span class="line"></span>
                     <span class="version">版本{{version}}</span>
                     <span class="logout" @click="logout">退出登录</span>

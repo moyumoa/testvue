@@ -30,7 +30,8 @@
     > .brand_select{
         position: absolute;
         width: 130px;
-        height: 108px;
+        height: auto;
+        max-height: 108px;
         background: #FFFFFF;
         box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
         border-radius: 4px;
@@ -133,6 +134,9 @@
                 }
                 /deep/ .el-input__suffix{
                     display: none;
+                }
+                .el-select{
+                    flex-grow: 1;
                 }
             }
             > .pipeline_wrap{
@@ -422,7 +426,7 @@
     }
 }
 .set_wrap{
-    position: absolute;
+    position: fixed;
     width: 20px;
     height: 20px;
     left: 24px;
@@ -442,11 +446,12 @@
 
         > .setInfo_list{
             width: 120px;
-            height: 117px;
+            // height: 117px;
             background: #FFFFFF;
             box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            padding-bottom: 12px;
 
             > span{
                 width: 100%;
