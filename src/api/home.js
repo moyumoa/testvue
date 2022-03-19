@@ -33,4 +33,8 @@ export default {
   selectBrand: (param) => {
     return service.post('/system/account/selectBrand',param)
   },
+  // 判断上传文件完成
+  isFiniteAdd: (param) => {
+    return service.post('/sumvideo/sv/creative/addCreative',param)
+  },
 }

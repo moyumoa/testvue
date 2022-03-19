@@ -1,8 +1,8 @@
 <template>
     <div class="home_wrapper" @click="hidden">
         <div class="head_wrap">
-            <!-- <h4 class="name">{{userName}}</h4> -->
-            <div class="brand_wrap" @click.stop="showBrand">
+            <h4 class="name">{{userPhone}}</h4>
+            <!-- <div class="brand_wrap" @click.stop="showBrand">
                 <span>{{selectedBrand.brandName}}</span>
                 <img src="@/assets/imgs/brand-select.png" alt="">
             </div>
@@ -12,7 +12,7 @@
                 @click="changeBrand(brandItem)">
                 {{brandItem.brandName}}
                 </span>
-            </div>
+            </div> -->
             <img class="logo" src="@/assets/imgs/video-icon.png" alt="">
             <img class="name_logo" src="@/assets/imgs/name-logo.png" alt="">
         </div>
@@ -20,18 +20,19 @@
             <div class="form_wrap">
                 <div class="form_item">
                     <div class="input_wrap">
-                        <span>归属</span>
+                        <span>品牌</span>
                         <b></b>
                         <!-- 下拉框 -->
                         <el-select
-                        v-model="belongValue"
-                        placeholder="请选择归属"
+                        v-model="selectedBrandId"
+                        @change="changeBrand"
+                        placeholder="请选择品牌"
                         >
                             <el-option
-                            v-for="option in belongList"
-                            :key="option.value"
-                            :label="option.label"
-                            :value="option.value"
+                            v-for="option in brandList"
+                            :key="option.brandId"
+                            :label="option.brandName"
+                            :value="option.brandId"
                             ></el-option>
                         </el-select>
                         <img src="@/assets/imgs/select-icon.png" alt="">
@@ -108,7 +109,7 @@
             <div v-if="showSet" class="setInfo_wrap">
                 <div class="setInfo_list" @click.stop>
                     <span class="name">{{userName}}</span>
-                    <span v-if="userPhone" class="phone">{{userPhone}}</span>
+                    <!-- <span v-if="userPhone" class="phone">{{userPhone}}</span> -->
                     <span class="line"></span>
                     <span class="version">版本{{version}}</span>
                     <span class="logout" @click="logout">退出登录</span>
@@ -151,9 +152,9 @@ export default {
             showTipDialog: false,
             showSet: false,
             userName: '',
-            userPhone: '',
+            // userPhone: '',
             version: '',
-            // userPhone: _store.get('USERPHONE'),
+            userPhone: _store.get('USERPHONE'),
             jsonUrl: '',
             fileFormData: null,
             uploadList: [],
@@ -164,6 +165,7 @@ export default {
             // 品牌
             brandList: [],
             selectedBrand: {},
+            selectedBrandId: null,
             isChangeBrand: false,
             // 归属
             belongList: [{label:'流水线',value:1},{label:'企业创意',value:2},],
@@ -245,9 +247,14 @@ export default {
                 properties: ['openFile'],
                 filters:[{name:'json',extensions: ['json']}]
             }).then(file=>{
+                // console.log(file.filePaths[0])
                 if(!file.filePaths[0]){
                     return
                 }
+                let fileIndex = file.filePaths[0].lastIndexOf("\\");
+                let relativeFilePath = file.filePaths[0].substring(0,fileIndex)
+                // console.log(relativeFilePath)
+                // console.log(fileIndex)
                 fs.readFile(file.filePaths[0],async(err,data)=>{
                     if(err){
                         _this.$message({
@@ -265,9 +272,10 @@ export default {
                     }
                     const fileFormData = new FormData();
                     fileFormData.append("file", jsonFile);
-                    if(this.pipelineId&&this.belongValue===1){
-                        fileFormData.append("pipelineId", this.pipelineId);
-                    }
+                    fileFormData.append("filePath", relativeFilePath);
+                    // if(this.pipelineId&&this.belongValue===1){
+                    //     fileFormData.append("pipelineId", this.pipelineId);
+                    // }
                     this.fileFormData = fileFormData
                     api.checkCreate(fileFormData).then((res)=>{
                         this.showTipDialog = res.data
@@ -279,6 +287,7 @@ export default {
                                         
                                 //     }
                                 // })
+                                // console.log(res.data)
                                 this.createList.push(res.data)
                             })
                         }
@@ -315,14 +324,14 @@ export default {
         },
         // 上传文件
         uploadFile(){
-            if(this.belongValue===1&&(!this.pipelineId)){
-                this.$message({
-                    message: '请选择流水线',
-                    type: 'error',
-                    duration: 3000
-                })
-                return;
-            }else 
+            // if(this.belongValue===1&&(!this.pipelineId)){
+            //     this.$message({
+            //         message: '请选择流水线',
+            //         type: 'error',
+            //         duration: 3000
+            //     })
+            //     return;
+            // }else 
             if(this.createList.length<=0){
                 this.$message({
                     message: '请添加创意',
@@ -340,6 +349,7 @@ export default {
             let _this = this
             let uploadIndex = 0
             this.createList.forEach(item=>{
+                let factoryId = item.id
                 item.materialPathVo.forEach(sItem=>{
                     fs.readFile(sItem.path,(err,data)=>{
                         if(err){
@@ -362,6 +372,7 @@ export default {
                             uploadIndex = uploadIndex +1
                             this.loadingPercent = Math.round((uploadIndex/allLength).toFixed(2)*100)
                             if(this.loadingPercent==100){
+                                api.isFiniteAdd({factoryId:factoryId}).then(()=>{})
                                 setTimeout(() => {
                                     // this.loadingShow = false
                                     this.loadingStep = 2
@@ -387,10 +398,11 @@ export default {
         getBrandList(){
             if(!_store.get('brandInfo')){
                 api.getBrandList().then(res=>{
-                    console.log(res)
+                    // console.log(res)
                     this.brandList = res.data
                     _store.set('brandInfo', res.data[0]);
                     this.selectedBrand = res.data[0]
+                    this.selectedBrandId = this.selectedBrand.brandId
                     this.getBrandUser(this.selectedBrand)
                 })
             }else{
@@ -398,7 +410,8 @@ export default {
                     // console.log(res)
                     this.brandList = res.data
                     this.selectedBrand = _store.get('brandInfo')
-                    this.getBrandUser(this.selectedBrand)
+                    this.selectedBrandId = this.selectedBrand.brandId
+                    this.getBrandUser(this.selectedBrand )
                 })
             }
         },
@@ -422,11 +435,14 @@ export default {
             }
         },
         // 
-        changeBrand(item){
-            _store.set('brandInfo', item);
-            this.selectedBrand = item
-            this.isChangeBrand = false
-            this.getBrandUser(this.selectedBrand)
+        changeBrand(id){
+            this.brandList.forEach(item=>{
+                if(item.brandId===id){
+                    _store.set('brandInfo', item);
+                    this.selectedBrand = item
+                    this.getBrandUser(this.selectedBrand)
+                }
+            })
         }
     },
     mounted(){

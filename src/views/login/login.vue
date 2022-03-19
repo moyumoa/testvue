@@ -161,11 +161,11 @@ export default {
         loginType: 2
       }
       api.loginAccount(data).then(res=>{
-        // console.log(res)
+        console.log(res.data)
         localsStore.set('USERTOKEN', res.data.tokenValue);
         localsStore.set('USERNAME', res.data.userName);
         localsStore.set('userInfo', res.data);
-        // localsStore.set('USERPHONE', res.data.userPhone);
+        localsStore.set('USERPHONE', _this.login_mobile);
         _this.$router.push({ name: "home" });
       }).catch(res=>{
         _this.login_password_tip = res.msg
@@ -194,7 +194,8 @@ export default {
       api.codeLogin(data).then(res=>{
         localsStore.set('USERTOKEN', res.data.tokenValue);
         localsStore.set('USERNAME', res.data.userName);
-        // localsStore.set('USERPHONE', res.data.userPhone);
+        localsStore.set('userInfo', res.data);
+        localsStore.set('USERPHONE', _this.code_mobile);
         _this.$router.push({ name: "home" });
       }).catch(res=>{
         _this.code_value_tip = res.msg
