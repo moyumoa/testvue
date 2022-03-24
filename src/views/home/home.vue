@@ -343,25 +343,34 @@ export default {
             this.loadingShow = true
             this.loadingPercent = 0
             let allLength = 0
+            let factoryIdList = []
             this.createList.forEach(item=>{
                 allLength = allLength + item.materialPathVo.length
+                factoryIdList.push(item.id)
             })
             let _this = this
             let uploadIndex = 0
             this.createList.forEach(item=>{
-                let factoryId = item.id
                 item.materialPathVo.forEach(sItem=>{
                     fs.readFile(sItem.path,(err,data)=>{
                         if(err){
-                            _this.$message({
-                                message: '文件不存在',
-                                type: 'error',
-                                duration: 3000
-                            })
-                            _this.loadingStep = 1
-                            _this.loadingShow = false
-                            _this.loadingPercent = 0
-                            return;
+                            if(sItem.mediaType==3){
+                                _this.$message({
+                                    message: '字体文件不存在',
+                                    type: 'warning',
+                                    duration: 3000
+                                })
+                            }else{
+                                 _this.$message({
+                                    message: '文件不存在',
+                                    type: 'error',
+                                    duration: 3000
+                                })
+                                _this.loadingStep = 1
+                                _this.loadingShow = false
+                                _this.loadingPercent = 0
+                                return;
+                            }
                         }
                         let blob = new Blob([new Int8Array(data)])
                         const uploadFormData = new FormData();
@@ -372,7 +381,9 @@ export default {
                             uploadIndex = uploadIndex +1
                             this.loadingPercent = Math.round((uploadIndex/allLength).toFixed(2)*100)
                             if(this.loadingPercent==100){
-                                api.isFiniteAdd({factoryId:factoryId}).then(()=>{})
+                                factoryIdList.forEach(item=>{
+                                    api.isFiniteAdd({factoryId:item}).then(()=>{})
+                                })
                                 setTimeout(() => {
                                     // this.loadingShow = false
                                     this.loadingStep = 2
@@ -411,7 +422,7 @@ export default {
                     this.brandList = res.data
                     this.selectedBrand = _store.get('brandInfo')
                     this.selectedBrandId = this.selectedBrand.brandId
-                    this.getBrandUser(this.selectedBrand )
+                    this.getBrandUser(this.selectedBrand)
                 })
             }
         },
@@ -435,9 +446,9 @@ export default {
             }
         },
         // 
-        changeBrand(id){
+        changeBrand(){
             this.brandList.forEach(item=>{
-                if(item.brandId===id){
+                if(item.brandId===this.selectedBrandId){
                     _store.set('brandInfo', item);
                     this.selectedBrand = item
                     this.getBrandUser(this.selectedBrand)
