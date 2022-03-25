@@ -355,11 +355,11 @@ export default {
                     fs.readFile(sItem.path,(err,data)=>{
                         if(err){
                             if(sItem.mediaType==3){
-                                _this.$message({
-                                    message: '字体文件不存在',
-                                    type: 'warning',
-                                    duration: 3000
-                                })
+                                // _this.$message({
+                                //     message: '字体文件不存在',
+                                //     type: 'warning',
+                                //     duration: 3000
+                                // })
                             }else{
                                  _this.$message({
                                     message: '文件不存在',
