@@ -458,12 +458,13 @@ export default {
     },
     mounted(){
         const os = require ('os');
+        
         if(process.platform=='win32'){
             this.jsonUrl = os.homedir+'\\AppData\\Local\\JianyingPro\\User Data\\Projects\\com.lveditor.draft'
         }else if(process.platform=='darwin'){
             this.jsonUrl = os.homedir+'/library/containers/com.lemon.lvpro/data/movies/jianyingpro/user data/projects/com.lveditor.draft'
         }
-        this.version = process.version
+        this.version = process.env.npm_package_version
         this.getBrandList()
     }
 }
