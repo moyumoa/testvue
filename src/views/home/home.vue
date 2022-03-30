@@ -111,7 +111,7 @@
                     <span class="name">{{userName}}</span>
                     <!-- <span v-if="userPhone" class="phone">{{userPhone}}</span> -->
                     <span class="line"></span>
-                    <span class="version">版本{{version}}</span>
+                    <span class="version">版本 {{version}}</span>
                     <span class="logout" @click="logout">退出登录</span>
                 </div> 
                 <div class="icon"></div>
@@ -464,7 +464,9 @@ export default {
         }else if(process.platform=='darwin'){
             this.jsonUrl = os.homedir+'/library/containers/com.lemon.lvpro/data/movies/jianyingpro/user data/projects/com.lveditor.draft'
         }
-        this.version = process.env.npm_package_version
+        var packageA = require("../../../package.json")
+        this.version = packageA.version
+        // console.log(packageA.version)
         this.getBrandList()
     }
 }
