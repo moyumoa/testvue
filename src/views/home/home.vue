@@ -251,10 +251,19 @@ export default {
                 if(!file.filePaths[0]){
                     return
                 }
-                let fileIndex = file.filePaths[0].lastIndexOf("\\");
-                let relativeFilePath = file.filePaths[0].substring(0,fileIndex)
-                // console.log(relativeFilePath)
-                // console.log(fileIndex)
+                console.log("#######")
+                let isSystem = navigator.userAgent.indexOf("Window") != -1 ?1:2;
+                let relativeFilePath = "";
+                if(isSystem === 2){//mac文件前缀获取
+                    let fileIndex = file.filePaths[0].lastIndexOf("/");
+                    relativeFilePath = file.filePaths[0].substring(0,fileIndex)
+                }else{
+                    let fileIndex = file.filePaths[0].lastIndexOf("\\");
+                    relativeFilePath = file.filePaths[0].substring(0,fileIndex)
+                }
+                console.log(file.filePaths[0])
+                console.log(relativeFilePath)
+                console.log(navigator.userAgent)
                 fs.readFile(file.filePaths[0],async(err,data)=>{
                     if(err){
                         _this.$message({
