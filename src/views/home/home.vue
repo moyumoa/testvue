@@ -391,7 +391,7 @@ export default {
                             this.loadingPercent = Math.round((uploadIndex/allLength).toFixed(2)*100)
                             if(this.loadingPercent==100){
                                 factoryIdList.forEach(item=>{
-                                    api.isFiniteAdd({factoryId:item}).then(()=>{})
+                                    api.isFiniteWebsdkAdd({factoryId:item}).then(()=>{})
                                 })
                                 setTimeout(() => {
                                     // this.loadingShow = false
