@@ -19,8 +19,13 @@ export default {
   },
   // 上传创意
   uploadFile: (param) => {
-    return service.post('/sumvideo/sv/material/upload', param)
+    return service.post('/sumvideoup/sv/material/upload', param)
   },
+
+  uploadMaterialIds: (param) => {
+    return service.post('/sumvideo/up/sv/material/upload', param)
+  },
+
   // 查询流水线的上传素材
   getPipelineCreate: (param) => {
     return service.get(`/sumvideo/sv/factory/path?pipelineId=${param}`)

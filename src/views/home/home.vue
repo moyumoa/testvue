@@ -384,9 +384,9 @@ export default {
                         let blob = new Blob([new Int8Array(data)])
                         const uploadFormData = new FormData();
                         uploadFormData.append("file", blob);
-                        uploadFormData.append("id", sItem.id);
+                        uploadFormData.append("ids", sItem.ids.join(','));
+                        uploadFormData.append("mediaTypes",sItem.mediaTypes.join(','))
                         api.uploadFile(uploadFormData).then(()=>{
-                            // console.log(res)
                             uploadIndex = uploadIndex +1
                             this.loadingPercent = Math.round((uploadIndex/allLength).toFixed(2)*100)
                             if(this.loadingPercent==100){
