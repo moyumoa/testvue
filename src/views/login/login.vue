@@ -158,7 +158,7 @@ export default {
       let data = {
         phone: _this.login_mobile,
         password: md5(_this.login_password),
-        loginType: 2,
+        loginType: 1,
         pwdType: 'password'
       }
       api.loginAccount(data).then(res=>{
@@ -190,7 +190,7 @@ export default {
       let data = {
         phone: _this.code_mobile,
         checkCode: _this.code_value,
-        loginType: 2
+        loginType: 1
       }
       api.codeLogin(data).then(res=>{
         localsStore.set('USERTOKEN', res.data.tokenValue);

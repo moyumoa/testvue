@@ -444,7 +444,7 @@ export default {
             let data = {
                 brandId: item.brandId,
                 compannyCode: item.companyCode,
-                loginType: 2
+                loginType: 1
             }
             api.selectBrand(data).then(res=>{
                 // console.log(res)
@@ -467,7 +467,7 @@ export default {
             })
           const param={
             brandId: this.selectedBrandId,
-            loginType: 2,
+            loginType: 1,
             userId: userId   // userId都一样
           }
           api.loginAccount(param).then(res=>{
