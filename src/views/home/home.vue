@@ -416,24 +416,27 @@ export default {
         },
         // 获取品牌列表
         getBrandList(){
-            if(!_store.get('brandInfo')){
-                api.getBrandList().then(res=>{
-                    // console.log(res)
-                    this.brandList = res.data
-                    _store.set('brandInfo', res.data[0]);
-                    this.selectedBrand = res.data[0]
-                    this.selectedBrandId = this.selectedBrand.brandId
-                    this.getBrandUser(this.selectedBrand)
-                })
-            }else{
-                api.getBrandList().then(res=>{
-                    // console.log(res)
-                    this.brandList = res.data
-                    this.selectedBrand = _store.get('brandInfo')
-                    this.selectedBrandId = this.selectedBrand.brandId
-                    this.getBrandUser(this.selectedBrand)
-                })
-            }
+            // if(!_store.get('brandInfo')){
+            //     api.getBrandList().then(res=>{
+            //         // console.log(res)
+            //         this.brandList = res.data
+            //         _store.set('brandInfo', res.data[0]);
+            //         this.selectedBrand = res.data[0]
+            //         this.selectedBrandId = this.selectedBrand.brandId
+            //         this.getBrandUser(this.selectedBrand)
+            //     })
+            // }else{
+            //     api.getBrandList().then(res=>{
+            //         // console.log(res)
+            //         this.brandList = res.data
+            //         this.selectedBrand = _store.get('brandInfo')
+            //         this.selectedBrandId = this.selectedBrand.brandId
+            //         this.getBrandUser(this.selectedBrand)
+            //     })
+            // }
+          this.brandList = _store.get('userInfo.loginBrandVos')
+          this.selectedBrandId = _store.get('USERBRANDID')
+          this.userName= _store.get('USERNAME')
         },
         // 获取品牌登录信息
         getBrandUser(item){
@@ -456,6 +459,21 @@ export default {
         },
         // 
         changeBrand(){
+            // this.brandList.forEach(item=>{
+            //     if(item.brandId===this.selectedBrandId){
+            //         _store.set('brandInfo', item);
+            //         this.selectedBrand = item
+            //         this.getBrandUser(this.selectedBrand)
+            //     }
+            // })
+          const param={
+            brandId: this.selectedBrandId,
+            loginType: 2,
+            userId: this.brandList[0].userId   // userId都一样
+          }
+          api.loginAccount(param).then(res=>{
+            console.log(res)
+            // 过滤品牌
             this.brandList.forEach(item=>{
                 if(item.brandId===this.selectedBrandId){
                     _store.set('brandInfo', item);
@@ -463,6 +481,9 @@ export default {
                     this.getBrandUser(this.selectedBrand)
                 }
             })
+          }).catch(res=>{
+            this.$message.error(res.msg)
+          })
         }
     },
     mounted(){

@@ -66,6 +66,7 @@ export default {
         // 成功了就进入
         localsStore.set('USERTOKEN', res.data.tokenValue);
         localsStore.set('USERNAME', res.data.userName);
+        localsStore.set('USERBRANDID', this.selectedBrandId);
         this.$router.push({ name: "home" })
         console.log(res)
       }).catch(res=>{
