@@ -20,6 +20,7 @@
                   :value="option.brandId"
               ></el-option>
             </el-select>
+            <img src="@/assets/imgs/select-icon.png" alt="">
           </div>
         </div>
         <div class="upload_btn" @click="goNext" v-debounce>进入后台</div>
