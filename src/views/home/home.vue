@@ -473,14 +473,17 @@ export default {
           api.loginAccount(param).then(res=>{
             console.log(res)
             // 过滤品牌
-            _store.set('USERBRANDID', this.selectedBrandId)
-            this.brandList.forEach(item=>{
-                if(item.brandId===this.selectedBrandId){
-                    _store.set('brandInfo', item);
-                    this.selectedBrand = item
-                    this.getBrandUser(this.selectedBrand)
-                }
-            })
+            _store.set('USERBRANDID', res.data.thisBrand)
+            _store.set('USERTOKEN', res.data.tokenValue);
+            _store.set('USERID', res.data.userId);
+            _store.set('USERNAME', res.data.userName);
+            // this.brandList.forEach(item=>{
+            //     if(item.brandId===this.selectedBrandId){
+            //         _store.set('brandInfo', item);
+            //         this.selectedBrand = item
+            //         // this.getBrandUser(this.selectedBrand)
+            //     }
+            // })
           }).catch(res=>{
             this.$message.error(res.msg)
           })
