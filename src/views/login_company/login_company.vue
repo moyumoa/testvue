@@ -56,11 +56,17 @@ export default {
     },
 
     goNext(){
+      let userId = ''
+      this.brandList.forEach(item=>{
+        if(item.brandId===this.selectedBrandId){
+          userId = item.userId
+        }
+      })
       const param={
         brandId: this.selectedBrandId,
         loginCode: _store.get('userInfo.loginCode'),
         loginType: 2,
-        userId: this.brandList[0].userId   // userId都一样
+        userId: userId   // userId都一样
       }
       api.loginAccount(param).then(res=>{
         // 成功了就进入

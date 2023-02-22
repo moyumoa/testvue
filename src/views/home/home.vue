@@ -459,17 +459,16 @@ export default {
         },
         // 
         changeBrand(){
-            // this.brandList.forEach(item=>{
-            //     if(item.brandId===this.selectedBrandId){
-            //         _store.set('brandInfo', item);
-            //         this.selectedBrand = item
-            //         this.getBrandUser(this.selectedBrand)
-            //     }
-            // })
+          let userId = ''
+            this.brandList.forEach(item=>{
+                if(item.brandId===this.selectedBrandId){
+                  userId = item.userId
+                }
+            })
           const param={
             brandId: this.selectedBrandId,
             loginType: 2,
-            userId: this.brandList[0].userId   // userId都一样
+            userId: userId   // userId都一样
           }
           api.loginAccount(param).then(res=>{
             console.log(res)
