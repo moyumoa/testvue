@@ -13,7 +13,7 @@ const router = new Router({
 })
 router.beforeEach((to, from, next) => {
   store.commit("getBlueHead", to.meta.blueHead?to.meta.blueHead:false);
-  if (to.path === "/login") {
+  if (to.path === "/login" || to.path === "/login_company" ) {
     next();
   } else {
     // localStorage.getItem('USERTOKEN')

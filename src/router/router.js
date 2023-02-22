@@ -10,6 +10,16 @@ let singleRouter = [
     },
     component: () => import('@/views/login/login.vue')
   },
+  // 登陆后选择公司中间页
+  {
+    path: '/login_company',
+    name: 'login_company',
+    meta: {
+      title: '选择公司',
+      blueHead: true,
+    },
+    component: () => import('@/views/login_company/login_company.vue')
+  },
   // 上传页面
   {
     path: '/home',

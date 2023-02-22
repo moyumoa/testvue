@@ -158,7 +158,8 @@ export default {
       let data = {
         phone: _this.login_mobile,
         password: md5(_this.login_password),
-        loginType: 2
+        loginType: 2,
+        pwdType: 'password'
       }
       api.loginAccount(data).then(res=>{
         console.log(res.data)
@@ -166,7 +167,7 @@ export default {
         localsStore.set('USERNAME', res.data.userName);
         localsStore.set('userInfo', res.data);
         localsStore.set('USERPHONE', _this.login_mobile);
-        _this.$router.push({ name: "home" });
+        _this.$router.push({ name: "login_company" });
       }).catch(res=>{
         _this.login_password_tip = res.msg
       })
@@ -196,7 +197,7 @@ export default {
         localsStore.set('USERNAME', res.data.userName);
         localsStore.set('userInfo', res.data);
         localsStore.set('USERPHONE', _this.code_mobile);
-        _this.$router.push({ name: "home" });
+        _this.$router.push({ name: "login_company" });
       }).catch(res=>{
         _this.code_value_tip = res.msg
       })
