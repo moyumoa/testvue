@@ -473,6 +473,7 @@ export default {
           api.loginAccount(param).then(res=>{
             console.log(res)
             // 过滤品牌
+            _store.set('USERBRANDID', this.selectedBrandId)
             this.brandList.forEach(item=>{
                 if(item.brandId===this.selectedBrandId){
                     _store.set('brandInfo', item);
