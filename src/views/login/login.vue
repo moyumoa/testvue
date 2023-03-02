@@ -163,11 +163,24 @@ export default {
       }
       api.loginAccount(data).then(res=>{
         console.log(res.data)
-        localsStore.set('USERTOKEN', res.data.tokenValue);
-        localsStore.set('USERNAME', res.data.userName);
-        localsStore.set('userInfo', res.data);
-        localsStore.set('USERPHONE', _this.login_mobile);
-        _this.$router.push({ name: "login_company" });
+        console.log('看看打印输出')
+        if(res.data.opCode== 1){
+          localsStore.set('USERTOKEN', res.data.tokenValue);
+          localsStore.set('USERNAME', res.data.userName);
+          localsStore.set('userInfo', res.data);
+          localsStore.set('USERPHONE', _this.login_mobile);
+          _this.$router.push({ name: "login_company" });
+        }else{
+          const param = {
+            loginBrandVos:[{brandId:res.data.thisBrand,brandName:res.data.thisBrandName}]
+          }
+          localsStore.set('USERPHONE', _this.login_mobile);
+          localsStore.set('USERTOKEN', res.data.tokenValue);
+          localsStore.set('USERNAME', res.data.userName);
+          localsStore.set('USERBRANDID', res.data.thisBrand);
+          localsStore.set('userInfo', param);
+          _this.$router.push({ name: "home" });
+        }
       }).catch(res=>{
         _this.login_password_tip = res.msg
       })
@@ -193,11 +206,23 @@ export default {
         loginType: 1
       }
       api.codeLogin(data).then(res=>{
-        localsStore.set('USERTOKEN', res.data.tokenValue);
-        localsStore.set('USERNAME', res.data.userName);
-        localsStore.set('userInfo', res.data);
-        localsStore.set('USERPHONE', _this.code_mobile);
-        _this.$router.push({ name: "login_company" });
+        if(res.data.opCode == 1){
+          localsStore.set('USERTOKEN', res.data.tokenValue);
+          localsStore.set('USERNAME', res.data.userName);
+          localsStore.set('userInfo', res.data);
+          localsStore.set('USERPHONE', _this.code_mobile);
+          _this.$router.push({ name: "login_company" });
+        }else{
+          const param = {
+            loginBrandVos:[{brandId:res.data.thisBrand,brandName:res.data.thisBrandName}]
+          }
+          localsStore.set('USERTOKEN', res.data.tokenValue);
+          localsStore.set('USERNAME', res.data.userName);
+          localsStore.set('USERBRANDID', res.data.thisBrand);
+          localsStore.set('USERPHONE', _this.login_mobile);
+          localsStore.set('userInfo', param);
+          _this.$router.push({ name: "home" })
+        }
       }).catch(res=>{
         _this.code_value_tip = res.msg
       })
