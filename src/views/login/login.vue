@@ -172,12 +172,13 @@ export default {
           _this.$router.push({ name: "login_company" });
         }else{
           const param = {
-            loginBrandVos:[{brandId:res.data.thisBrand,brandName:res.data.thisBrandName}]
+            loginBrandVos:[{brandId:res.data.thisBrand,brandName:res.data.thisBrandName,userId:res.data.userId}]
           }
           localsStore.set('USERPHONE', _this.login_mobile);
           localsStore.set('USERTOKEN', res.data.tokenValue);
           localsStore.set('USERNAME', res.data.userName);
           localsStore.set('USERBRANDID', res.data.thisBrand);
+          localsStore.set('USERID', res.data.userId);
           localsStore.set('userInfo', param);
           _this.$router.push({ name: "home" });
         }
@@ -214,12 +215,13 @@ export default {
           _this.$router.push({ name: "login_company" });
         }else{
           const param = {
-            loginBrandVos:[{brandId:res.data.thisBrand,brandName:res.data.thisBrandName}]
+            loginBrandVos:[{brandId:res.data.thisBrand,brandName:res.data.thisBrandName,userId:res.data.userId}]
           }
           localsStore.set('USERTOKEN', res.data.tokenValue);
           localsStore.set('USERNAME', res.data.userName);
           localsStore.set('USERBRANDID', res.data.thisBrand);
           localsStore.set('USERPHONE', _this.login_mobile);
+          localsStore.set('USERID', res.data.userId);
           localsStore.set('userInfo', param);
           _this.$router.push({ name: "home" })
         }
