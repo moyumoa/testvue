@@ -17,7 +17,7 @@ module.exports = {
     electronBuilder: {
       nodeIntegration: true,
       builderOptions: {
-        productName: 'sumvideo-client',
+        productName: 'SumVideo',
         publish: [
           {
             provider: "generic",
@@ -32,7 +32,7 @@ module.exports = {
           createDesktopShortcut: true,
           createStartMenuShortcut: true,
           deleteAppDataOnUninstall: true,
-          artifactName: '${productName}-${version}.${ext}',
+          artifactName: 'SumVideo-${version}.${ext}',
           include: 'installer.nsh',
           // installerIcon: "./public/icon.ico", // 安装图标
           // uninstallerIcon: "./public/icon.ico", //卸载图标
