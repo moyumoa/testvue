@@ -3,7 +3,7 @@
     <div class="head_wrap">
       <h4 class="name">{{userPhone}}</h4>
       <img class="logo" src="@/assets/imgs/video-icon.png" alt="">
-      <img class="name_logo" src="@/assets/imgs/name-logo.png" alt="">
+      <div class="name_logo">短视频智能生产引擎</div>
     </div>
     <div class="home_container">
       <div class="form_wrap">
