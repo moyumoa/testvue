@@ -1,6 +1,9 @@
 <template>
   <div class="login_wrap">
-    <img class="logo_img" src="@/assets/imgs/login_logo.png" alt="">
+    <div class="logo_box">
+      <img class="logo_img" src="@/assets/imgs/login_logo.png" alt="">
+      短视频智能生产引擎
+    </div>
     <div class="change_wrap">
       <span :class="loginType===1?'active':''" @click="changeType(1)">密码登录</span>
       <b></b>

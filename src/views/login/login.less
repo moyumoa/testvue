@@ -3,16 +3,29 @@
     flex-direction: column;
     height: 100%;
     padding: 0 70px;
-
-    > .logo_img{
-        width: 132px;
-        height: 44px;
-        margin-top: 32px;
+    >.logo_box{
+      margin-top:40px ;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 600;
+      color: #2388FF;
+      line-height: 28px;
+      > .logo_img{
+        width:28px;
+        height: 28px;
+        margin-right: 8px;
+        object-fit: contain;
     }
+    }
+
+    
     > .change_wrap{
         display: flex;
         align-items: center;
-        margin-top: 30px;
+        margin-top: 42px;
 
         > span{
             height: 28px;
@@ -23,7 +36,7 @@
             cursor: pointer;
         }
         > .active{
-            font-weight: 500;
+            font-weight: 600;
             color: #303133;
         }
         > b{
