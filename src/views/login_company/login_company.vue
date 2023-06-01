@@ -65,7 +65,7 @@ export default {
       const param={
         brandId: this.selectedBrandId,
         loginCode: _store.get('userInfo.loginCode'),
-        loginType: 1,
+        loginType: 4,
         userId: userId   // userId都一样
       }
       api.loginAccount(param).then(res=>{

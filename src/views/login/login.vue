@@ -161,7 +161,7 @@ export default {
       let data = {
         phone: _this.login_mobile,
         password: md5(_this.login_password),
-        loginType: 1,
+        loginType: 4,
         pwdType: 'password'
       }
       api.loginAccount(data).then(res=>{
@@ -207,7 +207,7 @@ export default {
       let data = {
         phone: _this.code_mobile,
         checkCode: _this.code_value,
-        loginType: 1
+        loginType: 4
       }
       api.codeLogin(data).then(res=>{
         if(res.data.opCode == 1){
