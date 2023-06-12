@@ -588,7 +588,18 @@ export default {
         })
       });
     },
-    changeBrand() {
+    // 批量删除已上传创意
+    delCreateAll(createList){
+      createList.forEach((item, index) =>{
+        this.delCreate(item,index)
+      })
+    },
+    async changeBrand() {
+      // 清空已上传创意
+      if(this.createList.length > 0){
+        await this.delCreateAll(this.createList)
+      }
+
       console.log("切换品牌，准备获取是否具有上传权限--");
       let userId = "";
       this.brandList.forEach((item) => {
