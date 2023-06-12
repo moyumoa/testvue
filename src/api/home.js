@@ -46,4 +46,9 @@ export default {
   isFiniteWebsdkAdd: (param) => {
     return service.post('/sumvideo/sv/creative/addJyWebsdkCreative',param)
   },
+
+  // 当前用户权限
+  selectUserPermission: (param) => {
+    return service.post('/system/account/permission/selectUserPermission', param)
+  }
 }

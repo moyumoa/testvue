@@ -122,7 +122,7 @@
         </div>
         <div
           class="upload_btn"
-          :class="{ upload_btn_disabled: uploadDisabled }"
+          :class="{ upload_btn_disabled: !uploadDisabled }"
           @click="uploadFile"
           v-debounce
         >
@@ -203,14 +203,15 @@
         <div class="confirm_btn" @click="comfirnAdd" v-debounce>确定</div>
       </div>
     </div>
-    <!-- loading -->
-    <div
+    <!-- 想要效果： 从本地选择文件->选择的文件显示在对话框内的 loading -->
+    <!-- 目前做成： 上传loading-->
+    <!-- <div
       class="loading"
       v-if="uploadLoading"
       v-loading="uploadLoading"
       element-loading-text="上传中..."
       @click.stop
-    ></div>
+    ></div> -->
   </div>
 </template>
 <script>
@@ -256,7 +257,7 @@ export default {
       ],
       belongValue: null,
       uploadDisabled: false, // 上传按钮禁用
-      uploadLoading: false, // 上传按钮loading
+      // uploadLoading: false, // 上传按钮loading
     };
   },
   methods: {
@@ -377,6 +378,7 @@ export default {
             // }
             this.fileFormData = fileFormData;
             api.checkCreate(fileFormData).then((res) => {
+              console.log('checkCreate接口返回', res)
               this.showTipDialog = res.data;
               if (!res.data) {
                 api.addCreate(fileFormData).then((res) => {
@@ -423,7 +425,7 @@ export default {
     },
     // 上传文件
     uploadFile() {
-      if (this.uploadDisabled) return;
+      if (!this.uploadDisabled) return;
       // if(this.belongValue===1&&(!this.pipelineId)){
       //     this.$message({
       //         message: '请选择流水线',
@@ -440,6 +442,7 @@ export default {
         });
         return;
       }
+      // this.uploadLoading = true
       this.loadingShow = true;
       this.loadingPercent = 0;
       let allLength = 0;
@@ -468,6 +471,7 @@ export default {
                 });
                 _this.loadingStep = 1;
                 _this.loadingShow = false;
+                // _this.uploadLoading = false
                 _this.loadingPercent = 0;
                 return;
               }
@@ -492,6 +496,7 @@ export default {
                     // this.loadingShow = false
                     this.loadingStep = 2;
                     this.loadingPercent = 0;
+                    // _this.uploadLoading = false
                   }, 1000);
                 }
               })
@@ -499,6 +504,7 @@ export default {
                 _this.loadingStep = 1;
                 _this.loadingPercent = 0;
                 _this.loadingShow = false;
+                // _this.uploadLoading = false
               });
           });
         });
@@ -507,6 +513,7 @@ export default {
     // 成功返回
     successBack() {
       this.loadingShow = false;
+      // this.uploadLoading = false
       this.loadingStep = 2;
       this.reload();
     },
@@ -533,6 +540,10 @@ export default {
       this.brandList = _store.get("userInfo.loginBrandVos");
       this.selectedBrandId = _store.get("USERBRANDID");
       this.userName = _store.get("USERNAME");
+      this._selectUserPermission({
+        brandId: this.selectedBrandId,
+        userId: _store.get("USERID"),
+      });
     },
     // 获取品牌登录信息
     getBrandUser(item) {
@@ -553,7 +564,30 @@ export default {
         this.isChangeBrand = !this.isChangeBrand;
       }
     },
-    //
+    // 判断是否存在上传权限
+    hasSumVideoCreativeMakePermission(data) {
+      if (!data || !Array.isArray(data)) return false;
+      const sumVideoScope = data.find((scope) => {
+        // 判断是否是智能短视频并且存在创意制作权限
+        return (
+          scope.scopeCode === "contentProduction" &&
+          scope.childrenMenuList.some((menu) => menu.scopeCode === "sumvideo:creative_make")
+        );
+      });
+      // 如果找到了返回true，否则返回false
+      return Boolean(sumVideoScope);
+    },
+    // 获取权限
+    _selectUserPermission(query) {
+      api.selectUserPermission(query).then((res) => {
+        console.log("权限返回", res);
+        const permission = this.hasSumVideoCreativeMakePermission(res.data);
+        this.$nextTick(() =>{
+          console.log("是否具有上传权限", permission);
+          this.uploadDisabled = permission;
+        })
+      });
+    },
     changeBrand() {
       console.log("切换品牌，准备获取是否具有上传权限--");
       let userId = "";
@@ -570,7 +604,7 @@ export default {
       api
         .loginAccount(param)
         .then((res) => {
-          console.log(res);
+          console.log("res->", res);
           // 过滤品牌
           _store.set("USERBRANDID", res.data.thisBrand);
           _store.set("USERTOKEN", res.data.tokenValue);
@@ -583,6 +617,11 @@ export default {
           //         // this.getBrandUser(this.selectedBrand)
           //     }
           // })
+          const query = {
+            brandId: res.data.thisBrand,
+            userId: res.data.userId,
+          };
+          this._selectUserPermission(query);
         })
         .catch((res) => {
           this.$message.error(res.msg);
