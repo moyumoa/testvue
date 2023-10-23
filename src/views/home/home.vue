@@ -85,13 +85,13 @@
           @click.stop="clickCreat"
         >
           <div class="input_wrap">
-            <span>创意</span>
+            <span>模板</span>
             <b></b>
             <h4>
               {{
                 createList.length > 0
-                  ? `已添加${createList.length}条创意`
-                  : "请添加创意"
+                  ? `已添加${createList.length}条模板`
+                  : "请添加模板"
               }}
             </h4>
             <img src="@/assets/imgs/select-icon.png" alt="" />
@@ -116,7 +116,7 @@
                 <span class="h_line"></span>
                 <span class="v_line"></span>
               </div>
-              <span>添加创意文档</span>
+              <span>添加模板文档</span>
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@
           @click="showTipDialog = false"
         />
       </div>
-      <p>存在已上传创意是否新增当前创意？</p>
+      <p>存在已上传模板是否新增当前模板？</p>
       <div class="btn_wrap">
         <div class="cancle_btn" @click="showTipDialog = false">取消</div>
         <div class="confirm_btn" @click="comfirnAdd" v-debounce>确定</div>
@@ -253,7 +253,7 @@ export default {
       // 归属
       belongList: [
         { label: "流水线", value: 1 },
-        { label: "企业创意", value: 2 },
+        { label: "企业模板", value: 2 },
       ],
       belongValue: null,
       uploadDisabled: false, // 上传按钮禁用
@@ -436,7 +436,7 @@ export default {
       // }else
       if (this.createList.length <= 0) {
         this.$message({
-          message: "请添加创意",
+          message: "请添加模板",
           type: "error",
           duration: 3000,
         });
@@ -571,7 +571,7 @@ export default {
         // 判断是否是智能短视频并且存在创意制作权限
         return (
           scope.scopeCode === "contentProduction" &&
-          scope.childrenMenuList.some((menu) => menu.scopeCode === "sumvideo:creative_make")
+          scope.childrenMenuList.some((menu) => (menu.scopeCode === "sumvideo:cloud_template_management"||menu.scopeCode === "sumvideo:creative_mould"))
         );
       });
       // 如果找到了返回true，否则返回false
