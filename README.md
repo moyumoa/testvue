@@ -42,3 +42,10 @@ cnpm i
 npm run electron:serve
 ```
 
+
+#### 2024/08/30补充 ####
+### 增加打包配置 ###
+
+```
+"electron:build-m": "vue-cli-service electron:build --arm64 --x64" // 可以在一台mac上同时打包m1芯片和Intel芯片的客户端包
+```
