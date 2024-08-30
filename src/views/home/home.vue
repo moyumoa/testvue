@@ -217,6 +217,7 @@
 <script>
 import electronStore from "electron-store";
 import api from "../../api";
+import { throttle } from '@/libs/tools.js'
 // import store from '../../store'
 const _store = new electronStore();
 const fs = require("fs");
@@ -424,7 +425,7 @@ export default {
       });
     },
     // 上传文件
-    uploadFile() {
+    uploadFile: throttle(function() {
       if (!this.uploadDisabled) return;
       // if(this.belongValue===1&&(!this.pipelineId)){
       //     this.$message({
@@ -509,7 +510,7 @@ export default {
           });
         });
       });
-    },
+    }, 500),
     // 成功返回
     successBack() {
       this.loadingShow = false;

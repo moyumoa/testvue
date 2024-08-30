@@ -39,3 +39,18 @@ Date.prototype.format = function (format) {
       );
   return format;
 };
+/**
+ *
+ * @param {function} func - 节流触发函数
+ * @param {number} wait - 触发间隔(毫秒)
+ * @description 节流
+ */
+export function throttle(func, wait = 200) {
+  let lastTime
+  return function (...rest) {
+    if (!lastTime || new Date().getTime() - lastTime > wait) {
+      lastTime = +new Date()
+      func.apply(this, rest)
+    }
+  }
+}
