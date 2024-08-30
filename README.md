@@ -49,3 +49,10 @@ npm run electron:serve
 ```
 "electron:build-m": "vue-cli-service electron:build --arm64 --x64" // 可以在一台mac上同时打包m1芯片和Intel芯片的客户端包
 ```
+###  mac 打包 ###
+
+打包时npm运行会有报错，所以使用yarn运行
+
+```
+sudo yarn /~
+```
