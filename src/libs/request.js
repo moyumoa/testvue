@@ -16,7 +16,7 @@ const service = axios.create({
 service.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 
 const pending = [] // 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
-const whiteList = ["/sumvideoup/sv/material/upload",'/sumvideo/sv/material/upload','/sumvideo/sv/creative/addCreative'] // 不取消的接口list
+const whiteList = ["/sumvideoup/sv/material/upload",'/sumvideo/sv/material/upload','/sumvideo/sv/creative/addCreative','/sumvideo/sv/creative/addJyWebsdkCreative'] // 不取消的接口list
 const CancelToken = axios.CancelToken
 const removePending = ever => {
   for (const p in pending) {
