@@ -1,13 +1,15 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import routes from './router'
 import _Store from 'electron-store'
 import store from '../store'
 
-Vue.use(Router)
+const { ipcRenderer } = window.require('electron');
+
+Vue.use(VueRouter)
 const _store = new _Store();
 
-const router = new Router({
+const router = new VueRouter({
   routes,
   mode: process.env.NODE_ENV=='development'?'history':'hash'
 })
@@ -25,7 +27,9 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
-router.afterEach(() => {
+router.afterEach((to) => {
   window.scrollTo(0, 0)
+  // 发送路由变化事件到主进程
+  ipcRenderer.send('route-change', to.path);
 })
 export default router

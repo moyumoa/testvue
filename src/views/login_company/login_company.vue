@@ -73,7 +73,7 @@ export default {
         localsStore.set('USERTOKEN', res.data.tokenValue);
         localsStore.set('USERNAME', res.data.userName);
         localsStore.set('USERBRANDID', this.selectedBrandId);
-        this.$router.push({ name: "home" })
+        this.$router.push({ name: "template_select" })
         console.log(res)
       }).catch(res=>{
         this.$message.error(res.msg)

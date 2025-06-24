@@ -183,7 +183,7 @@ export default {
           localsStore.set('USERBRANDID', res.data.thisBrand);
           localsStore.set('USERID', res.data.userId);
           localsStore.set('userInfo', param);
-          _this.$router.push({ name: "home" });
+          _this.$router.push({ name: "template_select" });
         }
       }).catch(res=>{
         _this.login_password_tip = res.msg

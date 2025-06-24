@@ -22,11 +22,12 @@ let mainWindow
 // const fs = require('fs')
 async function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
-    width: 440,
-    height: 460,
-    // width: 880,
-    // height: 920,
+  // mainWindow = new BrowserWindow({
+  //   // width: 440,
+  //   // height: 460,
+  //   width: 880,
+  //   height: 920,
+  const windowConfig = {
     icon: path.join(__dirname,'../public/icon.png'),
     resizable: false,
     frame: process.platform=='darwin'?true:false,
@@ -39,7 +40,23 @@ async function createWindow() {
       enableRemoteModule: true,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
     }
-  })
+  };
+
+  // 根据路由设置不同窗口大小
+  if (process.argv.includes('--matter-template')) {
+    Object.assign(windowConfig, {
+      width: 1000,
+      height: 600
+    });
+  } else {
+    Object.assign(windowConfig, {
+      width: 440,
+      height: 460
+    });
+  }
+
+  mainWindow = new BrowserWindow(windowConfig);
+  
   //解决10.X版本跨域不成功问题(上线删除)
   app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors');
   //去掉顶部菜单
@@ -48,17 +65,34 @@ async function createWindow() {
     //  自定义菜单
     scaleWindow(ipcMain,mainWindow)
   }
+
+  // 监听窗口大小调整事件
+  ipcMain.on('resize-window', (event, size) => {
+    if (mainWindow) {
+      mainWindow.setSize(size.width, size.height);
+      mainWindow.center(); // 居中显示
+    }
+  });
+
   // 自动更新事件
   await handleUpdate(mainWindow)
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    await mainWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    // await mainWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    const url = process.argv.includes('--matter-template') 
+      ? process.env.WEBPACK_DEV_SERVER_URL + '#/matter_template'
+      : process.env.WEBPACK_DEV_SERVER_URL;
+    await mainWindow.loadURL(url);
     if (!process.env.IS_TEST) mainWindow.webContents.openDevTools()
   } else {
     createProtocol('app')
     // Load the index.html when not in development
-    mainWindow.loadURL('app://./index.html')
+    // mainWindow.loadURL('app://./index.html')
+    const url = process.argv.includes('--matter-template')
+      ? 'app://./index.html#/matter_template'
+      : 'app://./index.html';
+    mainWindow.loadURL(url);
   }
   // 主进程中
   
@@ -163,6 +197,20 @@ if (isDevelopment) {
     })
   }
 }
+
+// 添加打开matter_template页面的函数
+function openMatterTemplate() {
+  const child = process.spawn(process.execPath, ['--matter-template'], {
+    detached: true,
+    stdio: 'ignore'
+  });
+  child.unref();
+}
+
+// 监听打开matter_template页面的事件
+ipcMain.on('open-matter-template', () => {
+  openMatterTemplate();
+});
 
  
 

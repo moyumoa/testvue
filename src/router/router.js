@@ -10,7 +10,25 @@ let singleRouter = [
     },
     component: () => import('@/views/login/login.vue')
   },
-  // 登陆后选择公司中间页
+  {
+    path: '/template_select',
+    name: 'template_select',
+    meta: {
+      title: '选择上传方式',
+      blueHead: false,
+    },
+    component: () => import('@/views/template_select/template_select.vue')
+  },
+  // 上传素材模板
+  {
+    path: '/matter_template',
+    name: 'matter_template',
+    meta: {
+      title: '',
+      blueHead: true,
+    },
+    component: () => import('@/views/matter_template/matter_template.vue')
+  },
   {
     path: '/login_company',
     name: 'login_company',
@@ -32,7 +50,7 @@ let singleRouter = [
   },
   {
     path: '*',
-    redirect: '/home'
+    redirect: '/template_select'
   },
   // 404
   {
