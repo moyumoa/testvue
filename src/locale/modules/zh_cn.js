@@ -1,4 +1,4 @@
-import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
+import zhLocale from 'element-plus/es/locale/lang/zh-cn'
 const lang = {
   el: zhLocale.el, // element内部国际化
   message: {
