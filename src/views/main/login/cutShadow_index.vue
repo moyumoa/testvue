@@ -602,7 +602,7 @@ const loginByDyShop = throttle(() => {
     }
   }
 
-  @media screen and(min-width: 1440px) {
+  @media screen and (min-width: 1440px) {
     .login_page_self_main {
       width: 1300px;
       //margin-left: unset;

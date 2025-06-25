@@ -3,7 +3,9 @@ import router from '@/router'
 import store from '@/store'
 import '@/assets/style/reset.css'
 import '@/styles/index.scss'
-import elementPlus, { ElMessage } from 'element-plus'
+// import elementPlus, { ElMessage } from 'element-plus'
+import ElementPlus from 'element-plus'
+import { ElMessage } from 'element-plus'
 import 'element-plus/dist/index.css'
 import App from './App.vue'
 import i18n from './locale'
@@ -41,7 +43,7 @@ app.provide('$judgeOEA', judgeOEA)
 app.provide('$judgeHWork', judgeHWork)
 app.provide('$showSystemName', showSystemName)
 app.provide('$menuOfKeepAlive', menuOfKeepAlive)
-app.use(elementPlus).use(components).use(router).use(store).use(i18n).mount('#app')
+app.use(ElementPlus).use(components).use(router).use(store).use(i18n).mount('#app')
 
 function init() {
   // 如果是切影[抖店]，那一定是基础版
