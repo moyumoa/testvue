@@ -1,0 +1,57 @@
+.tree-select {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  font-size: 14px;
+}
+.tree-select__input {
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  padding: 6px 32px 6px 12px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tree-select__icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+}
+.tree-select__dropdown {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 1000;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  margin-top: 2px;
+  min-width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  max-height: 300px;
+  overflow: auto;
+}
+.tree-select__tree {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+.tree-node {
+  padding-left: 16px;
+}
+.tree-node__label {
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.tree-node--selected > .tree-node__label {
+  background: #e6f7ff;
+  color: #1890ff;
+}
+.tree-node__children {
+  margin-left: 16px;
+  padding-left: 8px;
+  border-left: 1px dashed #e4e7ed;
+} 

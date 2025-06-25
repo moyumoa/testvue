@@ -15,7 +15,7 @@ let singleRouter = [
     name: 'template_select',
     meta: {
       title: '选择上传方式',
-      blueHead: false,
+      blueHead: true,
     },
     component: () => import('@/views/template_select/template_select.vue')
   },

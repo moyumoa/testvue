@@ -1,37 +1,37 @@
-.home_wrapper{
+.home_wrapper {
   position: relative;
 }
-.head_wrap{
+.head_wrap {
   height: 38px;
-  background: #68ADFF;
+  background: #68adff;
   padding: 0 24px;
   position: relative;
 
-  > .brand_wrap{
+  > .brand_wrap {
     display: flex;
     align-items: center;
     cursor: pointer;
     position: relative;
     z-index: 1;
-    > span{
+    > span {
       height: 22px;
       font-size: 16px;
       font-weight: 500;
-      color: #FFFFFF;
+      color: #ffffff;
       line-height: 22px;
     }
-    > img{
+    > img {
       width: 12px;
       height: 12px;
       margin-left: 6px;
     }
   }
-  > .brand_select{
+  > .brand_select {
     position: absolute;
     width: 130px;
     height: auto;
     max-height: 108px;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
     left: 12px;
@@ -39,7 +39,7 @@
     z-index: 9;
     overflow: hidden;
     overflow-y: auto;
-    > span{
+    > span {
       width: 100%;
       display: block;
       height: 36px;
@@ -53,20 +53,20 @@
       text-overflow: ellipsis;
       cursor: pointer;
     }
-    > .brand_item_active{
-      background: #F4F5F7;
+    > .brand_item_active {
+      background: #f4f5f7;
       font-weight: 500;
       color: #606266;
     }
   }
-  > .name{
+  > .name {
     height: 22px;
     font-size: 16px;
     font-weight: 500;
-    color: #FFFFFF;
+    color: #ffffff;
     line-height: 22px;
   }
-  > .logo{
+  > .logo {
     position: absolute;
     width: 82px;
     height: 82px;
@@ -74,14 +74,13 @@
     top: -20px;
     left: 61px;
   }
-
 }
 
 .matter-container {
   padding: 20px 40px;
 
   .matter-select {
-     color: #717171;
+    color: #717171;
 
     .matter-select-top {
       margin-bottom: 20px;
@@ -90,9 +89,7 @@
       align-items: center;
 
       .matter-select-btn {
-
         .matter-btn-item {
-
           &:first-child {
             margin-right: 40px;
           }
@@ -101,6 +98,7 @@
 
       .matter-select-right {
         display: flex;
+        align-items: center;
 
         span {
           margin: 0 10px;
@@ -110,5 +108,65 @@
 
     .matter-select-btm {
     }
+  }
+
+  .matter-list {
+    margin-top: 10px;
+    
+    .matter-table {
+      .progress {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .el-progress {
+            width: 80%;
+          }
+          
+          .progress-switch {
+            font-size: 14px;
+
+            .progress-switch-item {
+              margin: 0 5px;
+              color: #bd3124;
+              cursor: pointer;
+            }
+          }
+      }
+    }
+
+    .matter-btn {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      
+
+      .matter-btn-item {
+        width:150px;
+        font-size: 16px;
+
+        &:first-child {
+          margin-right: 100px;
+        }
+      }
+    }
+  }
+
+  .matter-empty {
+    text-align: center;
+    margin-top: 80px;
+    color: #606266;
+
+    img {
+      width: 180px;
+      height: 180px;
+    }
+  }
+
+  .matter-empty {
+
   }
 }

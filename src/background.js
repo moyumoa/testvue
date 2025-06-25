@@ -29,10 +29,11 @@ async function createWindow() {
   //   height: 920,
   const windowConfig = {
     icon: path.join(__dirname,'../public/icon.png'),
-    resizable: false,
+    resizable: true,
     frame: process.platform=='darwin'?true:false,
+    width: 440,
+    height: 460,
     webPreferences: {
-      
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: true,
@@ -41,19 +42,6 @@ async function createWindow() {
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
     }
   };
-
-  // 根据路由设置不同窗口大小
-  if (process.argv.includes('--matter-template')) {
-    Object.assign(windowConfig, {
-      width: 1000,
-      height: 600
-    });
-  } else {
-    Object.assign(windowConfig, {
-      width: 440,
-      height: 460
-    });
-  }
 
   mainWindow = new BrowserWindow(windowConfig);
   
