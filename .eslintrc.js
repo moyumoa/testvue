@@ -11,7 +11,12 @@ module.exports = {
     'vue-global-api'
   ],
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@babel/eslint-parser',
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
   },
   globals: {
     defineProps: 'readonly',
