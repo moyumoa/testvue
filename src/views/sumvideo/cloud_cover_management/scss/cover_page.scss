@@ -1,0 +1,214 @@
+.sumvideo_cover_page {
+  .page_bottom {
+    margin-top: 16px;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 16px 6px 16px 24px;
+    .bottom_btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-right: 16px;
+    }
+  }
+}
+.sumvideo_cover_parent {
+  .no_echart {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #8f939a;
+    line-height: 20px;
+    img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      margin-bottom: 7px;
+    }
+  }
+  .loading_library {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+
+    img {
+      height: 25px;
+      margin-right: 4px;
+    }
+  }
+  @keyframes hideAni {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  .all_cover {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    .one_cover {
+      padding: 0 16px 16px 0;
+      .one_box {
+        cursor: pointer;
+
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        position: relative;
+
+        .animation_box {
+          cursor: pointer;
+          animation: hideAni 0.15s ease-in-out;
+          animation-fill-mode: forwards;
+          width: calc(100% + 70px);
+          position: absolute;
+          left: -35px;
+          top: -16px;
+          height: calc(100% + 95.5px);
+          background: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+          z-index: 2;
+          padding: 16px 16px 12px;
+          .animation_top {
+            width: 100%;
+            height: calc(100% - 32px);
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            .animation_cover {
+              width: calc(100% - 0px);
+              height:calc(100% - 0px);
+              border-radius: 4px;
+              display: flex;
+              object-fit: cover;
+              // border: 1px solid #e0e0e0;
+              background: url("https://tagvv-1256030678.file.myqcloud.com/20231025zbqvm.png") repeat;
+            }
+            .animation_top_btn {
+              z-index: 1;
+              position: absolute;
+              right: 12px;
+              top: 12px;
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-end;
+              align-items: center;
+              .del_btn {
+                width: 32px;
+                height: 32px;
+                background: rgba(0, 0, 0, 0.4);
+                border-radius: 16px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+              }
+              .del_icon {
+                width: 16px;
+                height: 16px;
+                object-fit: contain;
+                display: flex;
+              }
+              .del_btn + .del_btn {
+                margin-left: 12px;
+              }
+            }
+            .animation_bottom_btn {
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              width: 100%;
+              height: 36px;
+              background: rgba(0, 0, 0, 0.4);
+              border-radius: 0px 0px 4px 4px;
+              text-align: center;
+              padding: 8px 31px;
+
+              font-size: 14px;
+              font-weight: 400;
+              color: #ffffff;
+              line-height: 20px;
+            }
+            .animation_tag {
+              z-index: 2;
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 62px;
+              height: 62px;
+              display: flex;
+            }
+          }
+          .animation_bottom {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            .animation_title {
+              width: 100%;
+              padding: 12px 18px 0;
+              font-size: 14px;
+              font-weight: 400;
+              color: #303133;
+              line-height: 20px;
+              text-align: center;
+            }
+          }
+        }
+
+        .origin_box {
+          width: 100%;
+          height: 100%;
+          border-radius: 4px;
+          position: relative;
+          .origin_cover {
+            width: 100%;
+            height: calc(100% - 32px);
+            display: flex;
+            object-fit: cover;
+            border-radius: 4px;
+            // border: 1px solid #e0e0e0;
+            background: url("https://tagvv-1256030678.file.myqcloud.com/20231025zbqvm.png") repeat;
+           
+          }
+          .origin_tag {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 52px;
+            height: 52px;
+            display: flex;
+          }
+          .origin_title {
+            padding: 12px 12px 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            color: #303133;
+            line-height: 20px;
+          }
+        }
+      }
+    }
+  }
+}

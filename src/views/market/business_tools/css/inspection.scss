@@ -1,0 +1,15 @@
+.inspection_btn {
+  padding: 2px 8px;
+  font-size: 14px;
+  line-height: 1;
+  border: none;
+  min-height: 24px;
+  --el-button-bg-color: rgba(54, 79, 205, 0.1) !important;
+  --el-button-text-color: #364fcd !important;
+  --el-button-hover-text-color: #364fcd !important;
+  --el-button-hover-bg-color: rgba(54, 79, 205, 0.2) !important;
+  --el-button-hover-border-color: rgba(0, 0, 0, 0) !important;
+  --el-button-active-bg-color: rgba(54, 79, 205, 0.2) !important;
+  --el-button-active-text-color: #364fcd !important;
+  --el-button-active-border-color: rgba(0, 0, 0, 0) !important;
+}

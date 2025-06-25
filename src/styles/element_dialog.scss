@@ -1,0 +1,203 @@
+// 普通带取消、确定按钮的弹窗
+.xm_element_dialog {
+  border-radius: 4px !important;
+  .el-dialog__header {
+    padding: 14px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #323233;
+    line-height: 24px;
+  }
+  .el-dialog__body {
+    padding: 16px;
+  }
+  .el-dialog__footer {
+    padding: 0 16px 16px 0;
+    .el-button {
+      padding: 6px 22px;
+      border-radius: 4px;
+    }
+    .el-button + .el-button {
+      margin-left: 16px;
+    }
+  }
+}
+.xm_element_noHead_dialog{
+  .el-dialog__header{
+    border: none;
+    padding: 0;
+    height: 32px;
+  }
+  .el-dialog__body {
+    padding: 0 !important;
+  }
+  .el-dialog__headerbtn{
+    top: 16px;
+    right: 16px;
+  }
+}
+.xm {
+  .el-button--danger {
+    --el-button-bg-color: #df4545 !important;
+    --el-button-border-color: #df4545 !important;
+  }
+  .el-link--danger {
+    --el-link-text-color: #df4545 !important;
+    color: #df4545 !important;
+  }
+}
+.xm_dialog_hidden{
+  display: none;
+}
+// 邀请弹窗的样式
+.xm_invitaion_dialog {
+  .notValid_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 16px;
+    .notValid_icon {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+    }
+    .notValid_mark {
+      font-size: 14px;
+      font-weight: 400;
+      color: #909399;
+      line-height: 20px;
+      margin: 12px 0 36px 0;
+    }
+  }
+
+  .valid_box {
+    .valid_time_box {
+      padding-bottom: 23px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      .time_time {
+        font-size: 14px;
+        font-weight: 400;
+        color: #323233;
+        line-height: 20px;
+        span {
+          font-weight: 600;
+        }
+      }
+      .time_btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        cursor: pointer;
+        margin-left: 16px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #364fcd;
+        line-height: 20px;
+        .time_icon {
+          width: 14px;
+          height: 14px;
+          object-fit: cover;
+          margin-right: 3px;
+          margin-top: -2px;
+        }
+      }
+
+      .time_btn + .time_btn {
+        margin-left: 20px;
+      }
+    }
+    .valid_method {
+      .method_title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #323233;
+        line-height: 20px;
+      }
+      .method_mark {
+        margin: 8px 0 12px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #323233;
+        line-height: 20px;
+      }
+      .method_link {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        .link_mark {
+          font-size: 14px;
+          font-weight: 400;
+          color: #303133;
+          line-height: 20px;
+          margin-right: 14px;
+        }
+        .link_box {
+          width: 400px;
+          height: 32px;
+          background: #f7f8fa;
+          border-radius: 4px;
+          border: 1px solid #dcdfe6;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: 6px 12px 6px 15px;
+          .link_link {
+            font-size: 14px;
+            font-weight: 400;
+            color: #282c38;
+            line-height: 20px;
+            width: 330px;
+            white-space: nowrap;
+            overflow: auto;
+          }
+          .link_btn {
+            line-height: 20px;
+          }
+        }
+      }
+      .method_scan {
+        .scan_code {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          width: 120px;
+          .code_icon {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+          }
+          .code_btn {
+            margin-top: 8px;
+            line-height: 20px;
+          }
+        }
+        .scan_mark {
+          margin-top: 20px;
+          font-size: 14px;
+          font-weight: 400;
+          color: #909399;
+          line-height: 20px;
+          padding-bottom: 8px;
+        }
+      }
+    }
+    .valid_method + .valid_method {
+      margin-top: 20px;
+    }
+  }
+}
+// 给弹窗内容设一个最大高度
+.xm_maxHeight_dialog{
+  .el-dialog__body{
+    max-height:60vh;
+    overflow-y: auto;
+  }
+}

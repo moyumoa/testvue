@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="232px" height="60px" viewBox="0 0 232 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>路径备份 17</title>
+    <g id="内容中台" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="直播详情/百应数据/数据概览" transform="translate(-1072.000000, -1971.000000)">
+            <g id="编组-17" transform="translate(827.000000, 1971.000000)">
+                <rect id="矩形备份-2" fill="#F2F5FE" x="0" y="0" width="477" height="60" rx="4"></rect>
+                <path d="M264.824001,60 C263.210192,60 261.754459,59.0302292 261.132745,57.5409838 L245.525501,5.5409838 C244.674439,3.50235955 245.637148,1.15980612 247.675773,0.308744263 C248.163963,0.104939922 248.687733,0 249.216756,0 L473,0 C475.209139,0 477,1.790861 477,4 L477,56 C477,58.209139 475.209139,60 473,60 L264.824001,60 Z" id="路径备份-17" fill="#889CFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

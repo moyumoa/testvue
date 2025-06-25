@@ -1,0 +1,752 @@
+// 下拉菜单 选中的样式 参考 页面右上角选择品牌和选择个人信息
+.xm_dropDown {
+  .el-dropdown-menu__item:not(.is0disabled):focus {
+    background-color: rgba(54, 79, 205, 0.1);
+    color: $theme_color;
+  }
+}
+.xm_dropDown_maxHeight .el-dropdown-menu {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+// 暂无数据的样式 参考 内容中台-内容概览-直播排行榜等
+.xm_noneData {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #8f939a;
+  line-height: 20px;
+  img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-bottom: 7px;
+  }
+}
+// 上拉加载更多的样式
+.xm_pullUpToLoadMore {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+  color: #909399;
+  font-size: 12px;
+  img {
+    height: 25px;
+    margin-right: 4px;
+  }
+}
+// 文字按钮 带 向右的箭头
+.xm_linkHasIcon {
+  line-height: 32px;
+  width: max-content;
+  .el-link--inner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    img {
+      width: 14px;
+      height: 14px;
+      margin-left: 2px;
+    }
+  }
+}
+// 列表上方提示的样式 参考 内容中台-内容数据-商品数据-商品管理-聚合商品
+.xm_promptAboveTheTable {
+  margin-bottom: 16px;
+  padding: 14px 17px;
+  width: 100%;
+  background: #eaedfa;
+  border-radius: 4px;
+  border: 1px solid #889cff;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 20px;
+  &::before {
+    content: " ";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20230609abqll.png") no-repeat;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    margin-right: 10px;
+  }
+}
+
+// 提示 参考数据说明
+.xm_tooltipOfRight {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: #909399;
+  &::after {
+    content: " ";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20230609v2t8m.png") no-repeat;
+    width: 14px;
+    height: 14px;
+    background-size: cover;
+    margin-left: 4px;
+  }
+}
+
+.xm_tooltipOfRight2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  &::after {
+    content: " ";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20240426r6yo7.png") no-repeat;
+    width: 14px;
+    height: 14px;
+    background-size: cover;
+    margin-left: 4px;
+  }
+}
+
+// 已离职的样式
+.xm_depart {
+  margin-left: 8px;
+  width: 44px;
+  // height: 18px;
+  background: rgba(144, 147, 153, 0.1);
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #909399;
+  line-height: 16px;
+  text-align: center;
+  border: 1px solid #909399;
+  &::after {
+    content: "已离职";
+  }
+}
+
+// 消息提示框的样式 标题和按钮都居中显示。参考 模板分镜的重新剪辑
+.xm_dialog_messageBox {
+  .el-message-box__header {
+    border-bottom: 1px solid #dcdee0;
+    width: 100%;
+    height: 52px;
+    padding: 14px 16px;
+
+    .el-message-box__title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #323233;
+      line-height: 24px;
+    }
+  }
+
+  .el-message-box__content {
+    min-height: 89px;
+    padding: 16px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #323233;
+    line-height: 20px;
+  }
+
+  .el-message-box__btns {
+    padding: 0 16px;
+
+    button:nth-child(2) {
+      margin-left: 16px;
+    }
+  }
+}
+.xm_dialog_messageBox.hide_footer_line {
+  .el-message-box__header {
+    border-bottom: none !important;
+    height: 40px !important;
+    padding-bottom: 0 !important;
+  }
+}
+.xm_dialog_messageBox_15vh {
+  // margin:-15vh auto 0;
+  display: inline-block !important;
+  width: 480px !important;
+}
+
+.xm_color_picker_marginTop8 {
+  margin-top: 8px !important;
+}
+.xm_slider {
+  .el-slider__button {
+    width: 16px;
+    height: 16px;
+    background-color: #364fcd;
+    border-color: #fff;
+  }
+}
+
+// 部门筛选弹出框
+.dept_search_popper {
+  // z-index: 8 !important;
+  padding: 0 !important;
+  // max-width: 900px !important;
+  overflow-x: auto;
+  width: max-content !important;
+  .el-cascader-menu,
+  .el-cascader-panel.is-bordered {
+    border: none !important;
+  }
+}
+
+// 状态的样式
+.xm_status_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #303133;
+  line-height: 20px;
+  .status_circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background: #bfbfbf;
+    margin-right: 6px;
+  }
+  .green_circle {
+    background: #52c41a;
+  }
+  .red_circle {
+    background: #ff0000;
+  }
+  .blue_circle {
+    background: #364fcd;
+  }
+  .orange_circle {
+    background: #ed6a0c;
+  }
+  .grey_circle {
+    background: #dcdee0;
+  }
+}
+
+// 内容挂载类型ICON
+// 电商小黄车
+.xm_anchorType3_ICON {
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/202403062pwng.png") no-repeat;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+// 线索小风车
+.xm_anchorType5_ICON {
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20240306pr2d9.png") no-repeat;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+// 团购小房子
+.xm_anchorType6_ICON {
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20240306wz022.png") no-repeat;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+// POI位置
+.xm_anchorType2_ICON {
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20240306oq152.png") no-repeat;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+// 小程序
+.xm_anchorType4_ICON {
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20240306vg3vp.png") no-repeat;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+// 星麦云渠道发布
+.xm_anchorType7_ICON {
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/202306106d0z8.jpg") no-repeat;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    position: absolute;
+    border-radius: 100%;
+  }
+}
+
+// 文件类型
+.xm_file_xls_ICON {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20250107bfe0l.png") no-repeat;
+    width: 36px;
+    height: 36px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+.xm_file_pdf_ICON {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/202501079g78f.png") no-repeat;
+    width: 36px;
+    height: 36px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+.xm_file_txt_ICON {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/202501079xyg7.png") no-repeat;
+    width: 36px;
+    height: 36px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+.xm_file_doc_ICON {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20250107orb4i.png") no-repeat;
+    width: 36px;
+    height: 36px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+// .xm_file_md_ICON{
+//   width: 36px;
+//   height: 36px;
+//   position: relative;
+//   &::after {
+//     content: "";
+//     background: url("https://tagvv-1256030678.file.myqcloud.com/20250107pf8fz.png") no-repeat;
+//     width: 36px;
+//     height: 36px;
+//     background-size: cover;
+//     position: absolute;
+//   }
+// }
+// .xm_file_csv_ICON{
+//   width: 36px;
+//   height: 36px;
+//   position: relative;
+//   &::after {
+//     content: "";
+//     background: url("https://tagvv-1256030678.file.myqcloud.com/20250107v5a9r.png") no-repeat;
+//     width: 36px;
+//     height: 36px;
+//     background-size: cover;
+//     position: absolute;
+//   }
+// }
+.xm_file_ppt_ICON {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20250107m1sn0.png") no-repeat;
+    width: 36px;
+    height: 36px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+.xm_file_other_ICON {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  &::after {
+    content: "";
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20250107qqj93.png") no-repeat;
+    width: 36px;
+    height: 36px;
+    background-size: cover;
+    position: absolute;
+  }
+}
+.xm_anchorType_tag {
+  border-radius: 4px;
+  padding: 2px 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 400;
+  font-size: 12px;
+  color: #ff8300;
+  line-height: 18px;
+  div {
+    margin-right: 4px;
+  }
+}
+.xm_anchorType3_tag {
+  color: #ff8300;
+  background: rgba(255, 131, 0, 0.1);
+}
+.xm_anchorType5_tag {
+  color: #ffb70a;
+  background: rgba(255, 183, 10, 0.1);
+}
+.xm_anchorType6_tag {
+  color: #ff5353;
+  background: rgba(255, 83, 83, 0.1);
+}
+.xm_anchorType2_tag {
+  color: #0ecc3f;
+  background: rgba(14, 204, 63, 0.1);
+}
+.xm_anchorType4_tag {
+  color: #7e49fe;
+  background: rgba(126, 73, 254, 0.1);
+}
+
+// 手绘多选框-无边框
+.xm_check_box_noBorder {
+  .check_box {
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border-radius: 2px;
+    border: 1px solid #fff;
+    margin-left: 16px;
+    cursor: pointer;
+    position: relative;
+  }
+  .check_box_active {
+    border: 1px solid #364fcd;
+    background: #364fcd;
+    position: relative;
+    &::after {
+      box-sizing: content-box;
+      content: "";
+      border: 1px solid #fff;
+      border-left: 0;
+      border-top: 0;
+      height: 8px;
+      left: 5px;
+      position: absolute;
+      top: 1px;
+      transform: rotate(45deg) scaleY(1);
+      width: 4px;
+      transition: transform 0.15s ease-in 0.05s;
+      transform-origin: center;
+    }
+  }
+}
+// 手绘多选框-方形
+.xm_check_box {
+  .check_box {
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border-radius: 2px;
+    border: 1px solid #dcdee0;
+    margin-left: 16px;
+    cursor: pointer;
+    position: relative;
+  }
+  .check_box_active {
+    background: #364fcd;
+    position: relative;
+    &::after {
+      box-sizing: content-box;
+      content: "";
+      border: 1px solid #fff;
+      border-left: 0;
+      border-top: 0;
+      height: 8px;
+      left: 5px;
+      position: absolute;
+      top: 1px;
+      transform: rotate(45deg) scaleY(1);
+      width: 4px;
+      transition: transform 0.15s ease-in 0.05s;
+      transform-origin: center;
+    }
+  }
+}
+// 手绘多选框-圆角
+.xm_check_box_round {
+  .check_box {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border: 1px solid #dcdee0;
+    margin-left: 16px;
+    cursor: pointer;
+    position: relative;
+  }
+  .check_box_active {
+    background: #364fcd;
+    position: relative;
+    &::after {
+      box-sizing: content-box;
+      content: "";
+      border: 1px solid #fff;
+      border-left: 0;
+      border-top: 0;
+      height: 8px;
+      left: 5px;
+      position: absolute;
+      top: 1px;
+      transform: rotate(45deg) scaleY(1);
+      width: 4px;
+      transition: transform 0.15s ease-in 0.05s;
+      transform-origin: center;
+    }
+  }
+  .check_box_half_choose {
+    border-color: #364fcd;
+  }
+}
+
+// 手绘单选框
+.xm_radio_box {
+  .radio_choose {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #364fcd;
+    border-radius: 100%;
+    background: #364fcd;
+    &::after {
+      width: 4px;
+      height: 4px;
+      border-radius: 100%;
+      background-color: var(--el-color-white);
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      transition: transform 0.15s ease-in;
+    }
+  }
+  .radio_unChooose {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #dcdfe6;
+    border-radius: 100%;
+    &:hover {
+      border-color: #364fcd;
+    }
+  }
+}
+
+// 批量操作的样式
+.batch_icon_box {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  border-radius: 4px;
+  cursor: pointer;
+  .batch_icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+// 内置数据的ICON
+.xm_icon_rotate {
+  position: absolute;
+  left: 0 !important;
+  top: 0 !important;
+  width: 52px !important;
+  height: 52px !important;
+  object-fit: contain;
+  transform: rotate(270deg);
+}
+.xm_icon {
+  position: absolute;
+  left: 0 !important;
+  top: 0 !important;
+  width: 52px !important;
+  height: 52px !important;
+  object-fit: contain;
+}
+
+// 图片加载中的Loading
+.image_placeholder_loading {
+  width: 100%;
+  height: 100%;
+  background: #F2F3F5;
+  position: relative;
+}
+.image_placeholder_icon {
+  background: url("https://tagvv-1256030678.file.myqcloud.com/20241028jykvg.png") no-repeat;
+  background-size: contain;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+// 隐藏表单必填项的*
+.hideRequired{
+  .el-form-item__label::before{
+    display: none;
+  }
+}
+
+// 预览弹窗
+.xm_preview_dialog {
+  border-radius: 8px !important;
+  .el-dialog__header {
+    display: none;
+  }
+  .el-dialog__body {
+    padding: 0 !important;
+    border-radius: 8px;
+  }
+}
+.kos_page {
+  .red_score {
+    color: #d40000;
+  }
+  .orange_score {
+    color: #ed6a0c;
+  }
+  .green_score {
+    color: #2da641;
+  }
+  .mark_cursor {
+    cursor: pointer;
+  }
+
+  .red_score.mark_text {
+    background: rgba(212, 0, 0, 0.2);
+  }
+  .orange_score.mark_text {
+    background: rgba(237, 106, 12, 0.2);
+  }
+  .green_score.mark_text {
+    background: rgba(45, 166, 65, 0.3);
+  }
+}
+.tooltip {
+  max-width: 400px;
+  // max-height: 400px;
+  // overflow-y: auto;
+  color: var(--el-color-white);
+  background: var(--el-text-color-primary);
+  border: 1px solid var(--el-text-color-primary);
+  border-radius:4px;
+  padding: 5px 11px;
+  z-index: 2000;
+  font-size: 12px;
+  line-height: 20px;
+  min-width: 10px;
+  word-wrap: break-word;
+  visibility: visible;
+  &::after{
+    content: "";
+    border-top-color: transparent !important;
+    border-left-color: transparent !important;
+    border-bottom-right-radius: 2px;
+    border: 1px solid var(--el-text-color-primary);
+    background: var(--el-text-color-primary);
+    left:  50px;
+    bottom: -6px;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: -1;
+    content: " ";
+    transform: rotate(45deg);
+    background: var(--el-text-color-primary);
+    box-sizing: border-box;
+  }
+}
+
+// 隐藏颜色选择器的清空按钮
+.operation_color_picker{
+  .el-color-dropdown__btns {
+    .el-button--text {
+      display: none !important;
+    }
+  }
+}

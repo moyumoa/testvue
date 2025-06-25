@@ -1,0 +1,20 @@
+$theme_color: #364FCD;
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': $theme_color,
+    ),
+  )
+);
+
+/* 最多显示$line行 */
+@mixin mult_line($line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  line-break: anywhere;
+}

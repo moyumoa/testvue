@@ -1,0 +1,220 @@
+*{
+  box-sizing: border-box;
+}
+.liveAnalysis_wrap {
+  // 直播数据预览
+  > .data_overview {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 22px 24px;
+
+    > .title_wrap {
+      display: flex;
+      justify-content: space-between;
+      > h4 {
+        height: 25px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #303133;
+        line-height: 25px;
+        margin-top: 6px;
+      }
+      > .time_wrap {
+        display: flex;
+        align-items: center;
+        > .date_table {
+          display: flex;
+          margin-right: 24px;
+          > span {
+            width: 66px;
+            height: 32px;
+            border: 1px solid #d9d9d9;
+            font-size: 14px;
+            font-weight: 400;
+            color: #595959;
+            line-height: 32px;
+            text-align: center;
+            border-right-color: transparent;
+            cursor: pointer;
+          }
+          > span:last-child {
+            border-right-color: #d9d9d9;
+            border-radius: 0 4px 4px 0;
+          }
+          > span:first-child {
+            border-radius: 4px 0 0 4px;
+          }
+          > span.active {
+            border-color: rgba(54, 79, 205, 1);
+            background: rgba(54, 79, 205, 0.1);
+            color: rgba(54, 79, 205, 1);
+          }
+          > .active + span {
+            border-left-color: transparent;
+          }
+        }
+      }
+    }
+    > .task_list {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      & > .task_item:first-child {
+        margin-left: 0;
+      }
+      > .task_item {
+        width: 20%;
+        height: 85px;
+        // background: #f6f7f8;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        > h4 {
+          height: 22px;
+          font-size: 18px;
+          font-weight: bold;
+          color: #333333;
+          line-height: 22px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow-wrap: break-word;
+          width: 100%;
+          text-align: center;
+        }
+        > span {
+          height: 17px;
+          font-size: 12px;
+          font-weight: 400;
+          color: #909399;
+          line-height: 17px;
+          margin-top: 6px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow-wrap: break-word;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+  // 累计观看人次
+  .lineEcharts_wrap{
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 4px;
+    background: #FFFFFF;
+    padding: 22px 24px;
+
+    > .title{
+      height: 25px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #303133;
+      line-height: 25px;
+    }
+  }
+  // 
+  .echarts_wrap{
+    display: flex;
+    margin-top: 16px;
+    justify-content: space-between;
+  }
+  // 直播开播时间
+  .barEcharts_wrap{
+    width: calc(50% - 8px);
+    background: #FFFFFF;
+    border-radius: 4px;
+    padding: 22px 24px;
+
+    > .title{
+      height: 25px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #303133;
+      line-height: 25px;
+    }
+  }
+  .pieEcharts_wrap{
+    width: calc(50% - 8px);
+    background: #FFFFFF;
+    border-radius: 4px;
+    padding: 22px 24px;
+
+    > .title{
+      height: 25px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #303133;
+      line-height: 25px;
+    }
+  }
+  // 
+  .table_wrap{
+    margin-top: 16px;
+    padding: 22px 24px;
+    background: #FFFFFF;
+    border-radius: 4px;
+
+    > .table_title{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      > span{
+        height: 25px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #303133;
+        line-height: 25px;
+      }
+      > .search_item{
+        display: flex;
+        align-items: center;
+
+        .item_content{
+          margin-right: 12px;
+        }
+      }
+    }
+    .content_wrap{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      .live_img{
+        width: 60px;
+        height: 60px;
+        margin-right: 12px;
+        border-radius: 4px;
+        object-fit: cover;
+      }
+      > img{
+        width: 60px;
+        height: 60px;
+        margin-right: 12px;
+        border-radius: 4px;
+        object-fit: cover;
+      }
+      > p{
+        width: calc(100% - 72px);
+        // height: 60px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #303133;
+        line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+      }
+    }
+  }
+}

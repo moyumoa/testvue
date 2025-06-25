@@ -1,0 +1,428 @@
+.mt_16 {
+  margin-top: 16px;
+}
+.ml_16 {
+  margin-left: 16px;
+}
+.mb_24 {
+  margin-bottom: 24px;
+}
+.flex_center {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.page_main {
+  background: #fff;
+  padding: 22px 24px 57px 24px;
+  border-radius: 4px;
+  .page_btns {
+    text-align: left;
+    margin-bottom: 22px;
+    &.right {
+      text-align: right;
+    }
+  }
+
+  .table_photo {
+    display: flex;
+    align-items: center;
+    img {
+      width: 48px;
+      height: 48px;
+      margin-right: 4px;
+      border-radius: 50%;
+    }
+    .platform_img {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+    }
+  }
+}
+
+.g_red {
+  color: #f85151;
+}
+.g_blue {
+  color: $theme_color;
+}
+.g_bw {
+  margin-bottom: 22px;
+}
+.g_bg {
+  background: #fff;
+  border-radius: 4px;
+  padding: 22px 24px 24px 24px;
+}
+.g_acc_info {
+  display: flex;
+  align-items: center;
+  > img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 16px;
+  }
+}
+.table_point {
+  display: flex;
+  align-items: center;
+  &:before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #51f88b;
+    margin-right: 8px;
+  }
+  &.reverse:before {
+    background-color: #f85151;
+  }
+  &.gray:before {
+    background-color: #909399;
+  }
+}
+.g_departure {
+  display: inline-block;
+  border: 1px solid #909399;
+  color: #909399;
+  background: rgba(144,147,153,0.1);
+  font-size: 12px;
+  border-radius: 2px;
+  padding: 0 4px;
+  margin-left: 8px;
+  line-height: 18px;
+}
+.g_failure {
+  pointer-events: none;
+  opacity: 0.5;
+  position: relative;
+  &:before {
+    content: "失效";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    line-height: 20px;
+    background-color: rgba($color: #d8d8d8, $alpha: 0.6);
+    border-radius: 2px;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+    transform: rotate(-20deg) translateY(-50%) scale(0.83);
+    z-index: 1;
+  }
+  &.big:before {
+    font-size: 18px;
+  }
+  &.middle:before {
+    font-size: 14px;
+  }
+}
+// 进度条的颜色
+#nprogress .bar {
+  background: #fff !important;
+}
+
+// 数字人角标左上角
+.digital_icon_left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 52px;
+  height: 52px;
+  z-index: 10;
+  background-image: url("https://tagvv-1256030678.file.myqcloud.com/20230309l1jh0.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+// 已删除的样式
+.xm_delClass {
+  display: inline-block;
+  margin-left: 8px;
+  width: 44px;
+  background: rgba(144, 147, 153, 0.1);
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #909399;
+  line-height: 16px;
+  text-align: center;
+  border: 1px solid #909399;
+  &::after {
+    content: "已删除";
+  }
+}
+.xm_platformIcon_1_backColor{
+  background: #F1F1F1;
+}
+.xm_platformIcon_2_backColor{
+  background: #FFF4E9;
+}
+.xm_platformIcon_3_backColor{
+  background: #FEEBEB;
+}
+.xm_platformIcon_4_backColor{
+  background: #FFEEE7;
+}
+// 矩阵号平台的标识 1抖音 2视频号 3小红书 4快手
+.xm_platformIcon_1 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/202307194iruw.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_3 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+
+  &::after {
+    content: " ";
+    width:  100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20230719pdntr.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_2 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20230719beuqd.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_4 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/202311208k8q0.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+// 24px icon
+.xm_platformIcon_1_24 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 24px;
+  height: 24px;
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20240104k1w0m.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_3_24 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 24px;
+  height: 24px;
+  &::after {
+    content: " ";
+    width:  100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/202401040uxct.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_2_24 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 24px;
+  height: 24px;
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/202401049teqw.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_4_24 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 24px;
+  height: 24px;
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20240104ifst7.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+// 16px
+.xm_platformIcon_0_16 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/202402285wmfw.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_1_16 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20231023wmb1d.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_3_16 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  &::after {
+    content: " ";
+    width:  100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20231023jccep.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_2_16 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/202402286v6ix.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_4_16 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20240228osml4.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+// 20px的icon暂时只有抖音跟小红书的[2024/04/03]，初始用于poi选择
+.xm_platformIcon_1_20 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20240403hn90r.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+.xm_platformIcon_2_20 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  &::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: url("https://tagvv-1256030678.file.myqcloud.com/20240403y0c9t.png") no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+
+// 小红书专业号
+.xm_xhsZYH{
+  margin-left: 8px;
+  width: 44px;
+  background: #ffebeb;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #d40000;
+  line-height: 16px;
+  text-align: center;
+  border: 1px solid #df4545;
+  &::after{
+    content: '专业号';
+    color: #d40000 !important;
+  }
+}
