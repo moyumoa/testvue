@@ -10,10 +10,16 @@
       <div class="matter-select">
         <div class="matter-select-top">
           <div class="matter-select-btn">
-            <el-button class="matter-btn-item" type="primary"
+            <el-button
+              class="matter-btn-item"
+              type="primary"
+              @click="selectMaterial"
               >选择素材</el-button
             >
-            <el-button class="matter-btn-item" type="primary"
+            <el-button
+              class="matter-btn-item"
+              type="primary"
+              @click="selectFolder"
               >选择文件夹</el-button
             >
           </div>
@@ -60,45 +66,54 @@
           </div>
           <!-- 列表 -->
           <div class="matter-table-list">
-            <el-table :data="pagedList" style="width: 100%">
+            <el-table :data="pagedList" style="width: 100%" height="280">
               <el-table-column prop="name" label="名称" />
               <el-table-column prop="catalogue" label="文件目录" />
               <el-table-column prop="type" label="类型" />
               <el-table-column prop="size" label="文件大小" />
               <el-table-column prop="status" label="状态" />
               <el-table-column label="操作">
-                <template>
-                  <div style="color: #0052d9">移除</div>
+                <template slot-scope="scope">
+                  <div
+                    style="color: #0052d9; cursor: pointer"
+                    @click="delItem(scope.row,scope.$index)"
+                  >
+                    移除
+                  </div>
                 </template>
               </el-table-column>
             </el-table>
             <el-pagination
               style="margin-top: 16px; text-align: right"
               background
-              layout="prev, pager, next"
+              layout="total , prev, pager, next"
               :page-size="pageSize"
               :current-page.sync="currentPage"
               :total="list.length"
             />
           </div>
         </div>
-        <!-- 按钮 -->
-        <div class="matter-btn">
-          <el-button class="matter-btn-item" @click="goback">返回</el-button>
-          <el-button class="matter-btn-item" type="primary">上传</el-button>
-        </div>
+       
       </div>
       <!-- 无上传数据 -->
       <div class="matter-empty" v-else>
         <img src="@/assets/imgs/upload-success.png" alt="" />
         <p>上传成功</p>
       </div>
+       <!-- 按钮 -->
+        <div class="matter-btn">
+          <el-button class="matter-btn-item" @click="goback">返回</el-button>
+          <el-button class="matter-btn-item" type="primary" :disabled="pagedList.length === 0">上传</el-button>
+          <ossOpload></ossOpload>
+        </div>
     </div>
   </div>
 </template>
 <script>
 import electronStore from "electron-store";
 import ElementTreeSelect from "@/components/ElementTreeSelect.vue";
+import api from "../../api";
+import ossOpload from "@/components/ossOpload.vue";
 
 const _store = new electronStore();
 const { ipcRenderer } = window.require("electron");
@@ -106,47 +121,23 @@ const { ipcRenderer } = window.require("electron");
 export default {
   components: {
     ElementTreeSelect,
+    ossOpload
   },
   data() {
     return {
       percentage: 70, //进度条百分比
       tagSwitch: false, //打标开关
       userPhone: _store.get("USERPHONE"),
-      treeSelectedId: null,
+      treeSelectedId: 'root', // 默认选中根节点
       treeOptions: [
         {
-          id: 1,
-          label: "一级 1",
-          children: [
-            { id: 11, label: "二级 1-1" },
-            {
-              id: 12,
-              label: "二级 1-2",
-              children: [{ id: 121, label: "三级 1-2-1" }],
-            },
-          ],
-        },
-        {
-          id: 2,
-          label: "一级 2",
-          children: [{ id: 21, label: "二级 2-1" }],
-        },
+          id: 'root',
+          label: '素材库',
+          children: []
+        }
       ],
       // 新增列表和分页数据
-      list: [
-        { name: "文件1.mp4", size: "10MB", status: "上传中" },
-        { name: "文件2.jpg", size: "2MB", status: "已完成" },
-        { name: "文件3.png", size: "1.5MB", status: "失败" },
-        { name: "文件4.mov", size: "20MB", status: "上传中" },
-        { name: "文件5.mp3", size: "3MB", status: "已完成" },
-        { name: "文件6.gif", size: "0.8MB", status: "已完成" },
-        { name: "文件7.mp4", size: "15MB", status: "上传中" },
-        { name: "文件8.jpg", size: "2.2MB", status: "失败" },
-        { name: "文件9.png", size: "1.1MB", status: "已完成" },
-        { name: "文件10.mov", size: "18MB", status: "上传中" },
-        { name: "文件11.mp3", size: "2.5MB", status: "已完成" },
-        { name: "文件12.gif", size: "0.9MB", status: "已完成" },
-      ],
+      list: [],
       pageSize: 5, //条数
       currentPage: 1, //当前页
     };
@@ -160,12 +151,113 @@ export default {
   mounted() {
     // 在组件加载完成后发送事件到主进程调整窗口大小
     ipcRenderer.send("resize-window", { width: 1000, height: 600 });
+    this.loadRootTree();
   },
   beforeDestroy() {
     // 组件销毁前恢复窗口大小
     ipcRenderer.send("resize-window", { width: 440, height: 460 });
   },
   methods: {
+    // 加载第一级"素材库"下的子节点
+    loadRootTree() {
+      this.loadTreeChildren('0', this.treeOptions[0]);
+    },
+    // 递归加载树节点
+    async loadTreeChildren(id, parentNode) {
+      try {
+        const res = await api.listTagFolder({ id });
+        if (res && res.code === 0 && Array.isArray(res.data)) {
+          parentNode.children = [];
+          for (const item of res.data) {
+            const node = {
+              id: item.id,
+              label: item.name,
+              hasChildren: item.hasChildren,
+              children: []
+            };
+            parentNode.children.push(node);
+            if (item.hasChildren) {
+              await this.loadTreeChildren(item.id, node);
+            }
+          }
+        }
+      } catch (e) {
+        console.error('加载树节点失败', e);
+      }
+    },
+    // 新增：选择素材
+    selectMaterial() {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.multiple = true;
+      input.accept = ".jpg,.jpeg,.png,.gif,.mp4,.mov,.mp3";
+      input.onchange = (e) => {
+        const files = Array.from(e.target.files);
+        const allowedTypes = [
+          "image/jpeg",
+          "image/png",
+          "image/gif",
+          "video/mp4",
+          "video/quicktime",
+          "audio/mp3",
+          "audio/mpeg",
+        ];
+        const newFiles = files.filter((f) => allowedTypes.includes(f.type));
+        console.log(newFiles);
+
+        const mapped = newFiles.map((f) => ({
+          name: f.name,
+          size: (f.size / 1024 / 1024).toFixed(2) + "MB",
+          type: f.type,
+          status: "待上传",
+          catalogue: f.path,
+          file: f,
+        }));
+        this.list = this.list.concat(mapped);
+      };
+      input.click();
+    },
+    // 新增：选择文件夹
+    selectFolder() {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.webkitdirectory = true;
+      input.multiple = true;
+      input.accept = "";
+      input.onchange = (e) => {
+        const files = Array.from(e.target.files);
+        const allowedTypes = [
+          "image/jpeg",
+          "image/png",
+          "image/gif",
+          "video/mp4",
+          "video/quicktime",
+          "audio/mp3",
+          "audio/mpeg",
+        ];
+        const notAllowedExtensions = [".zip", ".rar", ".7z"];
+        const filtered = files.filter((f) => {
+          // 过滤压缩包
+          const lowerName = f.name.toLowerCase();
+          const isCompressed = notAllowedExtensions.some((ext) =>
+            lowerName.endsWith(ext)
+          );
+          return allowedTypes.includes(f.type) && !isCompressed;
+        });
+        console.log(filtered);
+
+        const mapped = filtered.map((f) => ({
+          name: f.name,
+          size: (f.size / 1024 / 1024).toFixed(2) + "MB",
+          type: f.type,
+          status: "待上传",
+          catalogue: f.path,
+          file: f,
+        }));
+        this.list = this.list.concat(mapped);
+      };
+      input.click();
+    },
     // 上传文件夹改变
     onTreeChange(node) {
       this.$message && this.$message.success("选中节点: " + node.label);
@@ -181,6 +273,16 @@ export default {
           type: "warning",
         }
       ).then(() => {});
+    },
+    // 移除项
+    delItem(row,index) {
+      this.$confirm(`确认移除${row.name}这一项？`, "移除", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      }).then(() => {
+        this.list.splice((this.currentPage - 1) * this.pageSize + index, 1);
+      });
     },
     // 返回
     goback() {

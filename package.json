@@ -15,6 +15,7 @@
   },
   "main": "background.js",
   "dependencies": {
+    "ali-oss": "^6.23.0",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "electron-asar-hot-updater": "^0.1.3",

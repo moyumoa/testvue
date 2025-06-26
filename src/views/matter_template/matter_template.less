@@ -111,7 +111,7 @@
   }
 
   .matter-list {
-    margin-top: 10px;
+    margin: 10px 0;  
     
     .matter-table {
       .progress {
@@ -135,24 +135,7 @@
       }
     }
 
-    .matter-btn {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      position: fixed;
-      bottom: 20px;
-      left: 0;
-      
-
-      .matter-btn-item {
-        width:150px;
-        font-size: 16px;
-
-        &:first-child {
-          margin-right: 100px;
-        }
-      }
-    }
+   
   }
 
   .matter-empty {
@@ -166,7 +149,20 @@
     }
   }
 
-  .matter-empty {
+  .matter-btn {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      
 
-  }
+      .matter-btn-item {
+        width:150px;
+        font-size: 16px;
+
+        &:first-child {
+          margin-right: 100px;
+        }
+      }
+    }
 }

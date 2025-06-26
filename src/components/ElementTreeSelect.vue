@@ -97,4 +97,11 @@ export default {
 .el-input {
   cursor: pointer;
 }
+.el-popover__reference {
+  width: 200px;
+}
+.el-tree {
+  max-height: 300px;
+  overflow-y: auto;
+}
 </style> 
