@@ -89,6 +89,8 @@
       align-items: center;
 
       .matter-select-btn {
+        display: flex;
+        
         .matter-btn-item {
           &:first-child {
             margin-right: 40px;
@@ -120,7 +122,7 @@
         justify-content: space-between;
 
         .el-progress {
-            width: 80%;
+            width: 90%;
           }
           
           .progress-switch {
@@ -154,15 +156,13 @@
       display: flex;
       justify-content: center;
       margin-top: 10px;
+      position: fixed;
+      bottom: 15px;
       
 
       .matter-btn-item {
         width:150px;
         font-size: 16px;
-
-        &:first-child {
-          margin-right: 100px;
-        }
       }
     }
 }

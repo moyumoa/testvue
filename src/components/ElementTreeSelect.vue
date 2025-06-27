@@ -5,6 +5,7 @@
     trigger="click"
     v-model="popoverVisible"
     @show="onPopoverShow"
+    :disabled="disabled"
   >
     <el-tree
       :data="options"
@@ -12,13 +13,15 @@
       highlight-current
       @node-click="handleTreeSelect"
       :default-expand-all="true"
+      :disabled="disabled"
     />
     <el-input
       slot="reference"
       v-model="selectedLabel"
       :placeholder="placeholder"
       readonly
-      @focus="popoverVisible = true"
+      :disabled="disabled"
+      @focus="!disabled && (popoverVisible = true)"
       suffix-icon="el-icon-arrow-down"
       style="width: 200px"
     />
@@ -40,6 +43,10 @@ export default {
     placeholder: {
       type: String,
       default: '请选择'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
