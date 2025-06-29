@@ -44,7 +44,7 @@ app.provide('$showSystemName', showSystemName)
 app.provide('$menuOfKeepAlive', menuOfKeepAlive)
 app.use(ElementPlus).use(components).use(router).use(store).use(i18n).mount('#app')
 
-function init() {
+function init () {
   // 如果是切影[抖店]，那一定是基础版
   const cutShadow = getQueryVariable('cutShadow')
   if (cutShadow && cutShadow === '2') {
@@ -268,7 +268,7 @@ function init() {
     // 如果是切影[抖音]/基础版 window.open 系统地址都要拼上cutShadow
     if (localStorage.getItem('systemVersion') === '2' || (cutShadow && cutShadow === '2')) {
       const originOpen = window.open
-      window.open = (url, name, features) => {        
+      window.open = (url, name, features) => {
         console.log('切影-window.open拦截', url, name, features)
         // eslint-disable-next-line prefer-regex-literals
         const reg = new RegExp(/(\w+):\/\/([^/:]+)(:\d*)?/)
