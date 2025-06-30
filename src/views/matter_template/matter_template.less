@@ -90,7 +90,7 @@
 
       .matter-select-btn {
         display: flex;
-        
+
         .matter-btn-item {
           &:first-child {
             margin-right: 40px;
@@ -113,8 +113,8 @@
   }
 
   .matter-list {
-    margin: 10px 0;  
-    
+    margin: 10px 0;
+
     .matter-table {
       .progress {
         display: flex;
@@ -122,22 +122,99 @@
         justify-content: space-between;
 
         .el-progress {
-            width: 90%;
-          }
-          
-          .progress-switch {
-            font-size: 14px;
+          width: 90%;
+        }
 
-            .progress-switch-item {
-              margin: 0 5px;
-              color: #bd3124;
-              cursor: pointer;
-            }
+        .progress-switch {
+          font-size: 14px;
+
+          .progress-switch-item {
+            margin: 0 5px;
+            color: #bd3124;
+            cursor: pointer;
           }
+        }
+      }
+
+      .matter-table-list {
+
+        // 上传成功
+        .status-success{
+          position: relative;
+          margin-left: 20px;
+          text-align: right;
+
+          &::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background-color: #36c723;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+
+        // 上传失败
+        .status-failed{
+          position: relative;
+          margin-left: 30px;
+          text-align: right;
+
+          &::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background-color: #FE2C55;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+
+        // 待上传
+        .status-pending{
+          position: relative;
+          margin-left: 20px;
+          text-align: right;
+
+          &::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background-color: #909399;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+
+        // 上传中
+        .status-uploading{
+          position: relative;
+          margin-left: 20px;
+          text-align: right;
+
+          &::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border: 2px solid #3865F3;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
       }
     }
-
-   
   }
 
   .matter-empty {
@@ -152,17 +229,16 @@
   }
 
   .matter-btn {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
-      position: fixed;
-      bottom: 15px;
-      
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    position: fixed;
+    bottom: 15px;
 
-      .matter-btn-item {
-        width:150px;
-        font-size: 16px;
-      }
+    .matter-btn-item {
+      width: 150px;
+      font-size: 16px;
     }
+  }
 }
