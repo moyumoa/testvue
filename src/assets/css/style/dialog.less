@@ -1,0 +1,259 @@
+// .popup /deep/ .el-dialog__wrapper{
+//     z-index: 2001 !important;
+// }
+// /deep/ .el-date-picker{
+//     z-index: 2999 !important;
+// }
+.popup /deep/ .el-dialog__title{
+    color: #FFFFFF;
+}
+/* 弹窗*/
+.popup /deep/ .addDialog{
+    width: 500px;
+    // background: #FFFFFF;
+    border-radius: 24px;
+    background: #282C38;
+}
+.popup /deep/ .img_tip{
+    height: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, .3);
+    line-height: 20px;
+    margin-bottom: 16px;
+}
+.popup /deep/ .el-dialog__header{
+    height: 70px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 70px;
+    // color: #282C38;
+    color: #FFFFFF;
+    text-align: center;
+}
+.popup /deep/ .el-dialog__body{
+    padding: 0 42px 12px;
+    font-size: 16px;
+    font-weight: 400;
+    // color: #606060;
+    color: #FFFFFF;
+}
+.popup /deep/ .el-form-item{
+    margin-bottom: 16px;
+}
+.popup /deep/ .el-select{
+    line-height: 34px;
+    height: 34px;
+}
+.popup /deep/ .el-select .el-input .el-select__caret{
+    line-height: 34px;
+}
+.popup /deep/ .el-form-item__label{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 38px;
+    // color: #282C38;
+    color: #FFFFFF;
+    padding: 0;
+}
+.popup /deep/ .el-form-item__content{
+    line-height: 34px;
+}
+.popup /deep/ .el-input__inner{
+    background: #282C38;
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: 8px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    font-weight: 400;
+    // color: #282C38;
+    color: #FFFFFF;
+}
+/* .popup /deep/ .el-textarea{
+    width: 305px;
+} */
+/* .popup /deep/ .el-input {
+    width: 305px;
+} */
+.popup /deep/ .el-textarea__inner{
+    background: #282C38;
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: 8px;
+    height: 78px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+/* 删除diaog */
+.popup /deep/ .delDialog{
+    width: 324px;
+    // height: 202px;
+    background: #282C38;
+    border-radius: 24px;
+}
+.popup /deep/ .delDialog .el-dialog__header{
+    height: 46px;
+    padding: 0;
+    padding-top: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #FFFFFF;
+    text-align: center;
+}
+.popup /deep/ .delDialog .el-dialog__body{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #FFFFFF;
+    padding: 16px 36px;
+}
+.popup /deep/ .delDialog .el-dialog__footer{
+    text-align: right;
+    padding-right: 24px;
+    padding-top: 24px;
+}
+.popup /deep/ .delDialog .dialog-footer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+/* 上传图片 */
+.popup .addDialog .avatar-uploader{
+    width: 96px;
+    height: 128px;
+    position: relative;
+    // background: #FFFFFF;
+    background: #282C38;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .3);
+    &:hover .del_img{
+        display: block;
+    }
+}
+.popup .addDialog .upload_progress{
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    left: 50%;
+}
+.popup .addDialog .avatar-uploader-icon,.popup /deep/ .el-upload {
+    display: block;
+    font-size: 18px;
+    color: rgba(255, 255, 255, .3);
+    // width: 100px;
+    height: 125px;
+    line-height: 125px;
+    text-align: center;
+}
+.popup .addDialog .upload_tip{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    > img{
+        width: 28px;
+        height: 28px;
+        margin-bottom: 12px;
+        position: relative;
+    }
+    > span{
+        height: 20px;
+        font-size: 14px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, .3);
+        line-height: 20px;
+    }
+}
+.popup .addDialog .avatar {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.popup .detailsDialog .avatar {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.popup .detailsDialog .upload_tip{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > img{
+        width: 28px;
+        height: 28px;
+        margin-bottom: 16px;
+    }
+    > span{
+        height: 20px;
+        font-size: 14px;
+
+        font-weight: 500;
+        color: #282C38;
+        line-height: 20px;
+    }
+}
+.popup .addDialog .del_img{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    bottom: 8px;
+    right: 8px;
+    cursor: pointer;
+    display: none;
+}
+.popup /deep/ .el-autocomplete .el-input__suffix{
+    right: 0;
+}
+// 按钮
+.popup .addDialog /deep/ .el-form-item__content{
+    font-size: 0;
+}
+.popup .addDialog .foot_form_item{
+    text-align: right;
+    padding-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 28px;
+}
+.popup .sumwhy_button_submit{
+    width: 74px;
+    height: 32px;
+    background: #2388FF;
+    border-radius: 20px;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+    border: 0;
+}
+.popup .sumwhy_button_cancle{
+    width: 74px;
+    height: 32px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, .3);
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-right: 16px;
+    cursor: pointer;
+    text-align: center;
+    padding: 0;
+    background: transparent;
+}
