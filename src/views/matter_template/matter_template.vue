@@ -1004,12 +1004,13 @@ export default {
       }
     },
 
+    // 批量上传文件，单批最多5个，并发处理
     async uploadBatchFiles(batch, fs) {
-      for (const fileInfo of batch) {
+      const tasks = batch.map(async (fileInfo) => {
         if (this.isPaused) {
           this.uploadBtnLoading = false;
           this.saveUploadState();
-          return false;
+          return;
         }
         if (!fileInfo.ossUrl) {
           try {
@@ -1020,7 +1021,7 @@ export default {
               fileContent = fs.readFileSync(fileInfo.path);
             } else {
               this.$message.error("文件信息丢失，请重新选择");
-              continue;
+              return;
             }
             const { uploadToOss } = await import("@/libs/ossUploadUtil");
             const result = await uploadToOss(fileContent, fileInfo.name);
@@ -1029,8 +1030,26 @@ export default {
             console.log(e);
           }
         }
+      });
+      await Promise.all(tasks);
+      return !this.isPaused;
+    },
+    // 简易并发控制器
+    async asyncPool(limit, array, iteratorFn) {
+      const ret = [];
+      const executing = [];
+      for (const item of array) {
+        const p = Promise.resolve().then(() => iteratorFn(item));
+        ret.push(p);
+        if (limit <= array.length) {
+          const e = p.then(() => executing.splice(executing.indexOf(e), 1));
+          executing.push(e);
+          if (executing.length >= limit) {
+            await Promise.race(executing);
+          }
+        }
       }
-      return true;
+      return Promise.all(ret);
     },
 
     buildSubtasks(batch) {
@@ -1067,7 +1086,7 @@ export default {
       this.uploadBtnLoading = true;
       const batchSize = 5;
       // 总文件数用于计算上传进度
-      const total = this.list.length;
+      // const total = this.list.length;
       // 实际需要上传的文件数量
       const totalToUpload = uploadList.length;
       let start = 0;
@@ -1097,7 +1116,7 @@ export default {
             return;
           }
           const batch = uploadList.slice(start, start + batchSize);
-          const uploaded = await this.uploadBatchFiles(batch, fs, total);
+          const uploaded = await this.uploadBatchFiles(batch, fs);
           if (!uploaded) return;
           const subtasks = this.buildSubtasks(batch);
           if (subtasks.length > 0) {
