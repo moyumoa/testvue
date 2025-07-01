@@ -231,9 +231,9 @@
           :disabled="
             pagedList.length === 0 ||
             (!allowSelectAfterStop &&
-              (uploadBtnLoading || 
-               (isPaused && hasActuallyStartedUpload) || 
-               (isUploading && !isPaused)))
+              (uploadBtnLoading ||
+                (isPaused && hasActuallyStartedUpload) ||
+                (isUploading && !isPaused)))
           "
           :loading="uploadBtnLoading"
           >上传</el-button
@@ -316,18 +316,20 @@ export default {
     },
     // 判断是否实际开始过上传（有文件已上传到OSS或关联了子任务）
     hasActuallyStartedUpload() {
-      return this.list.some(item => 
-        item.ossUrl || item.hasAssociatedSubTask || item.status !== null
+      return this.list.some(
+        (item) =>
+          item.ossUrl || item.hasAssociatedSubTask || item.status !== null
       );
     },
-  },    mounted() {
+  },
+  mounted() {
     // 在组件加载完成后发送事件到主进程调整窗口大小
     ipcRenderer.send("resize-window", { width: 1000, height: 600 });
     // 初始化树形结构数据
     this.initializeTreeData();
     // 恢复上传状态
     this.restoreUploadState();
-    
+
     // 确保当前选中节点的标签正确显示
     this.$nextTick(() => {
       if (this.treeSelectedId && this.treeSelectedId !== "0") {
@@ -351,9 +353,9 @@ export default {
     // 但如果从未实际开始上传，则不设置暂停状态
     if (this.hasActuallyStartedUpload) {
       this.isPaused = true;
-      console.log('离开页面时设置暂停状态');
+      console.log("离开页面时设置暂停状态");
     } else {
-      console.log('从未实际开始上传，不设置暂停状态');
+      console.log("从未实际开始上传，不设置暂停状态");
     }
     this.saveUploadState();
     next();
@@ -363,34 +365,38 @@ export default {
     async initializeTreeData() {
       try {
         // 在懒加载模式下，只需要确保根节点存在
-        this.treeOptions = [{
-          id: "0",
-          label: "素材库",
-          isLeaf: false
-        }];
-        
-        console.log('懒加载模式下初始化根节点完成');
+        this.treeOptions = [
+          {
+            id: "0",
+            label: "素材库",
+            isLeaf: false,
+          },
+        ];
+
+        console.log("懒加载模式下初始化根节点完成");
       } catch (error) {
-        console.error('初始化树形数据失败:', error);
+        console.error("初始化树形数据失败:", error);
         // 即使加载失败，也保证根节点存在
-        this.treeOptions = [{
-          id: "0",
-          label: "素材库", 
-          isLeaf: false
-        }];
+        this.treeOptions = [
+          {
+            id: "0",
+            label: "素材库",
+            isLeaf: false,
+          },
+        ];
       }
     },
-    
+
     // 加载节点的子节点数据
     async loadNodeChildren(nodeId) {
       try {
         const res = await api.listTagFolder({ id: nodeId });
         if (res && res.code === 0 && Array.isArray(res.data)) {
-          return res.data.map(item => ({
+          return res.data.map((item) => ({
             id: item.id,
             label: item.name,
             isLeaf: !item.hasChildren,
-            children: item.hasChildren ? [] : undefined
+            children: item.hasChildren ? [] : undefined,
           }));
         }
         return [];
@@ -399,11 +405,11 @@ export default {
         return [];
       }
     },
-    
+
     // 确保指定节点的路径在树中可见（懒加载模式下简化处理）
     async ensureNodePathVisible(nodeId) {
       try {
-        console.log('懒加载模式下确保节点路径可见:', nodeId);
+        console.log("懒加载模式下确保节点路径可见:", nodeId);
         // 在懒加载模式下，树会根据需要自动加载节点
         // 这里主要是确保选中状态正确
         this.$nextTick(() => {
@@ -412,10 +418,24 @@ export default {
           }
         });
       } catch (error) {
-        console.error('确保节点路径可见失败:', error);
+        console.error("确保节点路径可见失败:", error);
       }
     },
-    
+
+    // 根据文件状态更新进度
+    updateProgress() {
+      const total = this.list.length;
+      if (total === 0) {
+        this.finished = 0;
+        this.percentage = 0;
+        return;
+      }
+      this.finished = this.list.filter(
+        (item) => item.status === 2 || item.status === "2"
+      ).length;
+      this.percentage = Math.round((this.finished / total) * 100);
+    },
+
     // 保存上传状态到本地存储
     saveUploadState() {
       const uploadState = {
@@ -441,7 +461,7 @@ export default {
           this.list.some((item) => item.status === 0) &&
           !this.isAllUploadCompleted,
       };
-      
+
       _store.set("UPLOAD_STATE", uploadState);
     },
 
@@ -468,10 +488,13 @@ export default {
         this.uploadAllSuccess = uploadState.uploadAllSuccess || false;
         this.polledUrls = uploadState.polledUrls || [];
         this.taskIdHistory = uploadState.taskIdHistory || {}; // 恢复taskId历史
-        
+
+        // 根据当前状态重新计算进度
+        this.updateProgress();
+
         // 确保根节点在选项中
         await this.initializeTreeData();
-        
+
         // 如果选中的不是根节点，需要确保该节点路径在树中可见
         if (this.treeSelectedId && this.treeSelectedId !== "0") {
           await this.ensureNodePathVisible(this.treeSelectedId);
@@ -487,14 +510,14 @@ export default {
           this.isPaused = false;
           this.uploadAllSuccess = true;
         }
-        
+
         // 如果从未实际开始上传（没有任何文件有ossUrl或关联的子任务），
         // 则不应该保持暂停状态，允许重新上传
         if (!this.hasActuallyStartedUpload) {
           this.isPaused = false;
-          console.log('检测到从未实际开始上传，重置暂停状态');
+          console.log("检测到从未实际开始上传，重置暂停状态");
         }
-        
+
         // 只要 polledUrls 有 status=0 的文件就自动轮询
         if (
           this.polledUrls.some((url) => {
@@ -504,16 +527,19 @@ export default {
         ) {
           this.startStatusPolling();
         }
-        
+
         // 确保树形组件正确显示，特别是在恢复非根节点状态时
         this.$nextTick(() => {
           if (this.$refs.treeSelect && this.treeSelectedId !== "0") {
-            console.log('恢复状态后，刷新树形组件显示，当前选中:', this.treeSelectedId);
+            console.log(
+              "恢复状态后，刷新树形组件显示，当前选中:",
+              this.treeSelectedId
+            );
             // 触发树形组件刷新，确保根节点可见
             this.$refs.treeSelect.$forceUpdate();
           }
         });
-        
+
         // if (this.isPaused && this.list.some((item) => item.status === 0)) {
         //   this.$message.info('检测到暂停的上传任务，点击"继续"按钮恢复上传');
         // }
@@ -529,10 +555,10 @@ export default {
       const poll = () => {
         // 按taskId分组需要轮询的URLs
         const taskGroups = {};
-        
-        this.polledUrls.forEach(url => {
-          const item = this.list.find(i => i.ossUrl === url);
-          if (item && item.status !== 2 && item.status !== '2') {
+
+        this.polledUrls.forEach((url) => {
+          const item = this.list.find((i) => i.ossUrl === url);
+          if (item && item.status !== 2 && item.status !== "2") {
             // 获取该文件对应的taskId
             const fileTaskId = this.taskIdHistory[url] || this.taskId;
             if (!taskGroups[fileTaskId]) {
@@ -545,10 +571,10 @@ export default {
         const taskIds = Object.keys(taskGroups);
         if (taskIds.length > 0) {
           // 为每个taskId分别查询状态
-          const promises = taskIds.map(taskId => 
+          const promises = taskIds.map((taskId) =>
             this.getStatusByTaskId(taskGroups[taskId], taskId)
           );
-          
+
           Promise.all(promises).finally(() => {
             this.statusTime = setTimeout(poll, 2000); // 递归调用
           });
@@ -570,24 +596,24 @@ export default {
     },
 
     // 动态加载树节点
-    async loadTreeNode(node, resolve) {      
+    async loadTreeNode(node, resolve) {
       try {
         // 如果是根节点（level === 0），加载第一级子节点
         const nodeId = node.level === 0 ? "0" : node.data.id;
-        
+
         const res = await api.listTagFolder({ id: nodeId });
-        console.log('API响应:', res);
-        
+        console.log("API响应:", res);
+
         if (res && res.code === 0 && Array.isArray(res.data)) {
-          const children = res.data.map(item => ({
+          const children = res.data.map((item) => ({
             id: item.id,
             label: item.name,
             isLeaf: !item.hasChildren,
           }));
-          console.log('解析后的子节点:', children);
+          console.log("解析后的子节点:", children);
           resolve(children);
         } else {
-          console.log('API返回无数据或格式错误');
+          console.log("API返回无数据或格式错误");
           resolve([]);
         }
       } catch (e) {
@@ -601,113 +627,127 @@ export default {
       try {
         // 立即设置加载状态
         if (this.$refs.treeSelect) {
-          this.$refs.treeSelect.setNodeLabel('加载中...');
+          this.$refs.treeSelect.setNodeLabel("加载中...");
         }
-        
+
         // 尝试通过递归查找获取节点名称
         const nodeName = await this.findNodeNameById(nodeId);
-        
+
         if (nodeName && this.$refs.treeSelect) {
           this.$refs.treeSelect.setNodeLabel(nodeName);
         } else if (this.$refs.treeSelect) {
           // 如果找不到，显示默认标签
-          this.$refs.treeSelect.setNodeLabel('加载中...');
+          this.$refs.treeSelect.setNodeLabel("加载中...");
         }
       } catch (error) {
-        console.error('获取节点标签失败:', error);
+        console.error("获取节点标签失败:", error);
         if (this.$refs.treeSelect) {
-          this.$refs.treeSelect.setNodeLabel('加载失败');
+          this.$refs.treeSelect.setNodeLabel("加载失败");
         }
       }
     },
-    
+
     // 通过ID查找节点名称（递归查找）
-    async findNodeNameById(targetId, parentId = '0', depth = 0) {
+    async findNodeNameById(targetId, parentId = "0", depth = 0) {
       try {
         // 防止递归过深
         if (depth > 10) {
           return null;
         }
-        
+
         const res = await api.listTagFolder({ id: parentId });
-        
+
         if (res && res.code === 0 && Array.isArray(res.data)) {
           // 在当前层级查找目标节点
-          const targetNode = res.data.find(item => item.id === targetId);
+          const targetNode = res.data.find((item) => item.id === targetId);
           if (targetNode) {
             return targetNode.name;
           }
-          
+
           // 如果当前层级没找到，递归查找有子节点的节点
           for (const item of res.data) {
             if (item.hasChildren) {
-              const result = await this.findNodeNameById(targetId, item.id, depth + 1);
+              const result = await this.findNodeNameById(
+                targetId,
+                item.id,
+                depth + 1
+              );
               if (result) {
                 return result;
               }
             }
           }
         }
-        
+
         return null;
       } catch (error) {
-        console.error('查找节点名称失败:', error);
+        console.error("查找节点名称失败:", error);
         return null;
       }
     },
-    
+
     // 获取节点路径（从根节点到目标节点）
     async getNodePath(targetId, callback) {
-      try {        
+      try {
         const path = await this.findNodePath(targetId);
-        
+
         if (callback) {
           callback(path);
         }
         return path;
       } catch (error) {
-        console.error('获取节点路径失败:', error);
+        console.error("获取节点路径失败:", error);
         if (callback) {
           callback([]);
         }
         return [];
       }
     },
-    
+
     // 递归查找节点路径
-    async findNodePath(targetId, parentId = '0', currentPath = ['0'], depth = 0) {
+    async findNodePath(
+      targetId,
+      parentId = "0",
+      currentPath = ["0"],
+      depth = 0
+    ) {
       try {
         // 防止递归过深
         if (depth > 10) {
-          console.warn('递归查找深度过深，停止查找');
+          console.warn("递归查找深度过深，停止查找");
           return null;
         }
         const res = await api.listTagFolder({ id: parentId });
-        
+
         if (res && res.code === 0 && Array.isArray(res.data)) {
           // 在当前层级查找目标节点
-          const targetNode = res.data.find(item => item.id === targetId);
+          const targetNode = res.data.find((item) => item.id === targetId);
           if (targetNode) {
             // 找到目标节点，返回完整路径
             const fullPath = [...currentPath, targetId];
             return fullPath;
           }
-          
+
           // 如果当前层级没找到，递归查找有子节点的节点
           for (const item of res.data) {
             if (item.hasChildren) {
               const newPath = [...currentPath, item.id];
-              const result = await this.findNodePath(targetId, item.id, newPath, depth + 1);
+              const result = await this.findNodePath(
+                targetId,
+                item.id,
+                newPath,
+                depth + 1
+              );
               if (result) {
                 return result;
               }
             }
           }
         }
-        
+
         return null;
       } catch (error) {
-        console.error('查找节点路径失败:', error);
+        console.error("查找节点路径失败:", error);
         return null;
       }
     },
@@ -725,7 +765,12 @@ export default {
         // 清理taskId历史记录
         this.taskIdHistory = {};
         // 注意：不重置 treeSelectedId 和 tagId，保持当前选中的素材库节点
-        console.log('清空列表后，保持素材库选择:', this.treeSelectedId, this.tagId);
+        console.log(
+          "清空列表后，保持素材库选择:",
+          this.treeSelectedId,
+          this.tagId
+        );
+        this.updateProgress();
       }
     },
     // 选择素材或文件夹
@@ -746,7 +791,12 @@ export default {
         this.taskId = undefined;
         // 重新初始化树形数据
         this.initializeTreeData();
-        console.log('终止后重新选择文件，重置为根节点:', this.treeSelectedId, this.tagId);
+        console.log(
+          "终止后重新选择文件，重置为根节点:",
+          this.treeSelectedId,
+          this.tagId
+        );
+        this.updateProgress();
       }
       this.$refs.fileInput && this.$refs.fileInput.click();
     },
@@ -759,6 +809,7 @@ export default {
           this.list.push(file);
         }
       });
+      this.updateProgress();
     },
     handleFileInputChange(e) {
       const files = filterFiles(e.target.files);
@@ -770,52 +821,56 @@ export default {
       this.isUploadStopped = false;
     },
     // 上传文件夹改变
-    onTreeChange(node) {     
+    onTreeChange(node) {
       // 检查是否有正在处理中的文件
-      const hasProcessingFiles = this.list.some(item => 
-        item.ossUrl && (item.status === '0' || item.status === 0)
+      const hasProcessingFiles = this.list.some(
+        (item) => item.ossUrl && (item.status === "0" || item.status === 0)
       );
-      
+
       if (hasProcessingFiles) {
         if (this.isPaused) {
-          this.$message.warning('检测到有文件正在处理中，切换素材库后将无法获取这些文件的最新状态，建议等待处理完成后再切换');
+          this.$message.warning(
+            "检测到有文件正在处理中，切换素材库后将无法获取这些文件的最新状态，建议等待处理完成后再切换"
+          );
         } else {
-          this.$message.warning('有文件正在处理中，切换素材库可能影响状态查询，建议暂停后再切换');
+          this.$message.warning(
+            "有文件正在处理中，切换素材库可能影响状态查询，建议暂停后再切换"
+          );
         }
       }
-      
+
       // 保存旧的taskId（如果有的话）
       const oldTaskId = this.taskId;
-      console.log('保存旧taskId:', oldTaskId);
-      
+      console.log("保存旧taskId:", oldTaskId);
+
       // 不清空原有未上传和已上传的文件
       this.tagId = node.id;
       this.initTask();
     },
-    
+
     // 处理节点标签请求
     async handleRequestNodeLabel(nodeId) {
       try {
-        console.log('请求节点标签:', nodeId);
-        
+        console.log("请求节点标签:", nodeId);
+
         // 根节点直接返回
-        if (nodeId === '0') {
+        if (nodeId === "0") {
           if (this.$refs.treeSelect) {
-            this.$refs.treeSelect.setNodeLabel('素材库');
+            this.$refs.treeSelect.setNodeLabel("素材库");
           }
           return;
         }
-        
+
         // 尝试通过API获取节点信息
         const label = await this.fetchNodeLabelById(nodeId);
         if (label && this.$refs.treeSelect) {
           this.$refs.treeSelect.setNodeLabel(label);
         }
       } catch (error) {
-        console.error('获取节点标签失败:', error);
+        console.error("获取节点标签失败:", error);
       }
     },
-    
+
     // 根据节点ID获取节点标签
     async fetchNodeLabelById(nodeId) {
       try {
@@ -832,18 +887,17 @@ export default {
           }
           return null;
         };
-        
+
         let label = findLabelInTree(this.treeOptions, nodeId);
         if (label) {
           return label;
         }
-        
+
         // 如果在现有树结构中找不到，通过递归查找
         label = await this.findNodeNameById(nodeId);
         return label;
-        
       } catch (error) {
-        console.error('获取节点标签失败:', error);
+        console.error("获取节点标签失败:", error);
         return null;
       }
     },
@@ -868,9 +922,9 @@ export default {
         // 移除待上传的项
         const removedItems = this.list.filter((item) => item.status === null);
         this.list = this.list.filter((item) => item.status !== null);
-        
+
         // 清理被移除项的taskId记录
-        removedItems.forEach(item => {
+        removedItems.forEach((item) => {
           if (item.ossUrl) {
             delete this.taskIdHistory[item.ossUrl];
             const urlIndex = this.polledUrls.indexOf(item.ossUrl);
@@ -879,7 +933,7 @@ export default {
             }
           }
         });
-        
+
         // 不清空 this.list，不删除 UPLOAD_STATE，保留所有历史
         this.saveUploadState();
       });
@@ -909,20 +963,21 @@ export default {
       }).then(() => {
         const actualIndex = (this.currentPage - 1) * this.pageSize + index;
         const removedItem = this.list[actualIndex];
-        
+
         // 清理相关数据
         if (removedItem && removedItem.ossUrl) {
           // 从taskId历史中移除
           delete this.taskIdHistory[removedItem.ossUrl];
-          
+
           // 从轮询列表中移除
           const urlIndex = this.polledUrls.indexOf(removedItem.ossUrl);
           if (urlIndex > -1) {
             this.polledUrls.splice(urlIndex, 1);
           }
         }
-        
+
         this.list.splice(actualIndex, 1);
+        this.updateProgress();
       });
     },
     // 返回
@@ -949,7 +1004,7 @@ export default {
       }
     },
 
-    async uploadBatchFiles(batch, fs, total) {
+    async uploadBatchFiles(batch, fs) {
       for (const fileInfo of batch) {
         if (this.isPaused) {
           this.uploadBtnLoading = false;
@@ -974,9 +1029,6 @@ export default {
             console.log(e);
           }
         }
-        this.finished++;
-        this.percentage = Math.round((this.finished / total) * 100);
-        
       }
       return true;
     },
@@ -1023,10 +1075,8 @@ export default {
         this.finished = 0;
         this.percentage = 0;
       }
-      // 统计已完成数（ossUrl存在或status==1为失败）
-      this.finished = this.list.filter(
-        (item) => item.ossUrl || item.status === 1
-      ).length;
+      // 根据当前状态初始化进度
+      this.updateProgress();
 
       try {
         if (!this.taskId) {
@@ -1056,7 +1106,7 @@ export default {
               if (item.ossUrl) {
                 const realItem = this.list.find((f) => f.file === item.file);
                 if (realItem) this.$set(realItem, "hasAssociatedSubTask", true);
-                
+
                 // 保存该文件对应的taskId
                 this.taskIdHistory[item.ossUrl] = this.taskId;
               }
@@ -1081,14 +1131,14 @@ export default {
       // 使用当前的taskId查询状态（保持向后兼容）
       return this.getStatusByTaskId(urls, this.taskId);
     },
-    
+
     async getStatusByTaskId(urls, taskId) {
       try {
         const statusRes = await api.getSubtaskStatus({
           taskId: taskId,
           urls: urls,
         });
-        
+
         if (statusRes.code === 0) {
           statusRes.data.forEach((item) => {
             const idx = this.list.findIndex((f) => f.ossUrl === item.url);
@@ -1097,12 +1147,15 @@ export default {
               console.log(`更新文件状态: ${item.url} -> ${item.status}`);
             }
           });
-          
+
+          // 状态更新后，重新计算进度
+          this.updateProgress();
+
           // 检查所有已上传文件是否都成功
           if (
             this.list
               .filter((item) => item.ossUrl)
-              .every((item) => item.status === 2 || item.status === '2')
+              .every((item) => item.status === 2 || item.status === "2")
           ) {
             if (this.statusTime) {
               clearInterval(this.statusTime);
@@ -1113,7 +1166,9 @@ export default {
             _store.delete("UPLOAD_STATE");
           }
         } else {
-          console.error(`查询状态失败 - taskId: ${taskId}, 错误: ${statusRes.msg}`);
+          console.error(
+            `查询状态失败 - taskId: ${taskId}, 错误: ${statusRes.msg}`
+          );
         }
       } catch (error) {
         console.error(`查询状态异常 - taskId: ${taskId}:`, error);
@@ -1148,7 +1203,12 @@ export default {
         this.taskId = undefined;
         // 重新初始化树形数据
         this.initializeTreeData();
-        console.log('终止后重新选择文件，重置为根节点:', this.treeSelectedId, this.tagId);
+        console.log(
+          "终止后重新选择文件，重置为根节点:",
+          this.treeSelectedId,
+          this.tagId
+        );
+        this.updateProgress();
       }
       this.$refs.folderInput && this.$refs.folderInput.click();
     },
