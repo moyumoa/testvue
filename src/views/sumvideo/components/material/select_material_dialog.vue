@@ -409,6 +409,24 @@ const tableForm = reactive({
   }
 })
 
+// 弹窗打开时读取上一次选择的文件夹信息
+watch(show, val => {
+  if (val) {
+    const id = sessionStorage.getItem('selectMaterialFolderId')
+    const pids = sessionStorage.getItem('chooseFileTreeParentIds')
+    defaultChooseId.value = id ? id : '0'
+    expandIdList.value = pids ? JSON.parse(pids) : ['0']
+    fileID.value = defaultChooseId.value
+    showChooseFileTree.value = false
+    nextTick(() => {
+      showChooseFileTree.value = true
+    })
+    tableForm.loading = true
+    tableForm.page.pageNo = 1
+    getList()
+  }
+})
+
 // 查询
 function querySearch() {
   console.log('查询')
