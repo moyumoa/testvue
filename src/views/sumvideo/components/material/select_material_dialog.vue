@@ -33,6 +33,8 @@
         <chooseFileTree
           :origin="fileOrigin ? fileOrigin : 'material'"
           :fileType="fileType ? fileType : null"
+          :chooseId="defaultChooseId"
+          :expandIds="expandIdList"
           @updateId="fileSelected"
           v-if="showChooseFileTree"
         />
@@ -322,9 +324,33 @@ console.log('materialType', materialType.value)
 const showChooseFileTree = ref(true) // 是否显示，主要是用于重置
 const btnLoading = ref(false) // 确定按钮的loadin
 const fileID = ref(0) // 选择的文件夹id
+const defaultChooseId = ref('0') // 默认选中的文件夹id
+const expandIdList = ref(['0']) // 默认展开的id列表
 const listParams = ref({}) // 获取当前列表的参数
 const contentRef = ref(null)
 const pageOpenLoading = ref(true)
+
+// 弹窗打开时读取上一次选择的文件夹信息
+watch(
+  show,
+  val => {
+    if (val) {
+      const id = sessionStorage.getItem('selectMaterialFolderId')
+      const pids = sessionStorage.getItem('chooseFileTreeParentIds')
+      defaultChooseId.value = id || '0'
+      expandIdList.value = pids ? JSON.parse(pids) : ['0']
+      fileID.value = defaultChooseId.value
+      showChooseFileTree.value = false
+      nextTick(() => {
+        showChooseFileTree.value = true
+      })
+      tableForm.loading = true
+      tableForm.page.pageNo = 1
+      getList()
+    }
+  },
+  { immediate: true }
+)
 
 // 选择逻辑
 const selectData = reactive({
@@ -960,7 +986,9 @@ function clearFun() {
 
 // 选择文件夹
 function fileSelected(chooseId) {
+  console.log('||||----选择的文件夹id', chooseId)
   fileID.value = chooseId
+  sessionStorage.setItem('selectMaterialFolderId', chooseId)
   tableForm.loading = true
   tableForm.page.pageNo = 1
   getList()
