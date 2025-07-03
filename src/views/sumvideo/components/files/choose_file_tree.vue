@@ -405,9 +405,10 @@ const getAllParentIds = id => {
   const node = treeRef.value?.getNode(id)
   const ids = []
   // 按顺序添加到数组内
-  while (node.parent) {
-    ids.unshift(node.parent.data.id)
-    node.parent = node.parent.parent
+  let parent = node && node.parent
+  while (parent) {
+    ids.unshift(parent.data.id)
+    parent = parent.parent
   }
   sessionStorage.setItem('chooseFileTreeParentIds', JSON.stringify(ids))
   console.log('>>> 所有父级ID', ids)
