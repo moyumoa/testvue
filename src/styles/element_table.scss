@@ -1,0 +1,22 @@
+.xm_table_action {
+  .el-link + .el-link {
+    margin-left: 20px;
+  }
+}
+.xm_table_action_line {
+  .el-link + .el-link {
+    margin-left: 0px !important;
+  }
+  .action_line {
+    width: 1px;
+    height: 14px;
+    background: #dcdee0;
+    margin: 0 6px;
+  }
+}
+.xm_table_action_right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}

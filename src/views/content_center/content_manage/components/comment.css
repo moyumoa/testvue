@@ -1,0 +1,30 @@
+.m_b {
+  margin-bottom: 16px;
+  border-radius: 4px;
+  background: #fff;
+  padding: 22px 24px;
+}
+.m_b2 {
+  margin-bottom: 16px;
+  border-radius: 4px;
+  background: #fff;
+  padding: 22px 24px 50px;
+}
+.m_line {
+}
+.title {
+  width: 72px;
+  height: 25px;
+  font-size: 18px;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #303133;
+  line-height: 25px;
+  margin-bottom: 10px;
+}
+.row_overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: break-word;
+}

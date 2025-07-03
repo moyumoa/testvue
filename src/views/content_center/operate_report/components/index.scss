@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+}
+// .tooltip_wrap {
+//   max-width: 400px;
+//   font-size: 12px;
+//   font-weight: 400;
+//   color: #ffffff;
+//   line-height: 18px;
+// }
+
+.account_wrap {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  > .avatar_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    > .avatar_icon {
+      width: 56px;
+      height: 56px;
+      vertical-align: top;
+      border-radius: 50%;
+      box-sizing: border-box;
+      object-fit: cover;
+    }
+    // > .avatar_icon_active{
+    //   border: 1px solid #364FCD;
+    // }
+    > .expired_img {
+      width: 14px;
+      height: 14px;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+  }
+  > .account_info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+    width: calc(100% - 64px);
+
+    > div {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      // justify-content: space-between;
+
+      span {
+        max-width: calc(100% - 56px);
+        height: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #303133;
+        line-height: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .brand_img {
+        width: 32px !important;
+        height: 14px !important;
+        margin-left: 4px;
+        border-radius: 0;
+      }
+      img {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        margin-left: 4px;
+      }
+    }
+    p {
+      width: 100%;
+      white-space: nowrap;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+
+      > span {
+        max-width: calc(100% - 24px);
+        white-space: nowrap;
+        overflow: hidden;
+        height: 17px;
+        font-size: 12px;
+        font-weight: 400;
+        color: #909399;
+        line-height: 17px;
+      }
+      > .qrcode_img {
+        width: 18px;
+        height: 18px;
+        margin-left: 6px;
+      }
+    }
+    .pre_time{
+      white-space: nowrap;
+      overflow: hidden;
+      height: 17px;
+      font-size: 12px;
+      font-weight: 400;
+      color: #909399;
+      line-height: 17px;
+      margin-top: 4px;
+    }
+    .platform_icon_box{
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-left: 3px;
+      position: relative;
+      div{
+        width: 18px;
+        height: 18px;
+
+      }
+    }
+  }
+}
+.user_wrap {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  > img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  > span {
+    max-width: calc(100% - 44px);
+    height: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #303133;
+    line-height: 20px;
+    white-space: nowrap;
+    margin-left: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  > .fs_icon {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    bottom: 0;
+    left: 22px;
+  }
+  .default_photo {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+}
+.user_wrap_cursor {
+  cursor: pointer;
+}
+

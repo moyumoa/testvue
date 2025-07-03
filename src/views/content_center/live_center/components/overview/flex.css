@@ -1,0 +1,49 @@
+.hidden {
+  overflow: hidden;
+}
+.re {
+  position: relative;
+}
+.line-hidden {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.two-hidden {
+	word-break: break-all;
+	text-overflow: ellipsis;
+	display: -webkit-box; 
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden; 
+}
+.flex {
+  display: flex;
+}
+.warp {
+  flex-wrap: wrap;
+}
+.col {
+  flex-direction: column;
+}
+.just-center {
+  justify-content: center;
+}
+.just-start {
+  justify-content: flex-start;
+}
+.just-end {
+  justify-content: flex-end;
+}
+.just-a {
+  justify-content: space-around;
+}
+.just-b {
+  justify-content: space-between;
+}
+.align-center {
+  align-items: center;
+}
+.align-end {
+  align-items: flex-end;
+}

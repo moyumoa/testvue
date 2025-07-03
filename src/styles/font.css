@@ -1,0 +1,265 @@
+/* 阿里巴巴普惠体 */
+@font-face {
+  font-family: "alibaba-sans";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/Alibaba-PuHuiTi-Regular.ttf");
+  font-display: block;
+}
+/* 仿宋字体 */
+@font-face {
+  font-family: "fangsong";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E4%BB%BF%E5%AE%8B%E5%AD%97%E4%BD%93.ttf");
+  font-display: block;
+}
+/* 楷体 */
+@font-face {
+  font-family: "kaiti";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E6%A5%B7%E4%BD%93.ttf");
+  font-display: block;
+}
+/* 宋体 */
+@font-face {
+  font-family: "SimSun";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/SimSun.ttf");
+  font-display: block;
+}
+/* 思源黑体 */
+@font-face {
+  font-family: "siyuan-heiti";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E6%80%9D%E6%BA%90%E9%BB%91%E4%BD%93.ttf");
+  font-display: block;
+}
+/* 思源宋体 */
+@font-face {
+  font-family: "siyuan-songti";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font/097b8c858fe94a57a8657adc529566a0.ttf");
+  font-display: block;
+}
+/* 文泉驿等宽正黑 */
+@font-face {
+  font-family: "wqy-zenhei-mono";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/WenQuanYiZenHeiMono.ttf");
+  font-display: block;
+}
+/* 文泉驿点阵正黑 */
+@font-face {
+  font-family: "wqy-zenhei-sharp";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/WenQuanYiZenHeiSharp.ttf");
+  font-display: block;
+}
+/* 文泉驿微米黑 */
+@font-face {
+  font-family: "wqy-microhei";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/WenQuanYiMicroHei.ttf");
+  font-display: block;
+}
+/* 站酷高端黑体 */
+@font-face {
+  font-family: "zcool-gaoduanhei";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E7%AB%99%E9%85%B7%E9%AB%98%E7%AB%AF%E9%BB%91%E4%BD%93.ttf");
+  font-display: block;
+}
+/* 站酷快乐体 */
+@font-face {
+  font-family: "zcool-kuaile";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E7%AB%99%E9%85%B7%E5%BF%AB%E4%B9%90%E4%BD%93.ttf");
+  font-display: block;
+}
+/* 站酷文艺体 */
+@font-face {
+  font-family: "zcool-wenyiti";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E7%AB%99%E9%85%B7%E6%96%87%E8%89%BA%E4%BD%93.ttf");
+  font-display: block;
+}
+/* 包图小白体 */
+@font-face {
+  font-family: "a796a2904ece71ed99ac919499216304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E5%8C%85%E5%9B%BE%E5%B0%8F%E7%99%BD%E4%BD%93.ttf");
+  font-display: block;
+}
+/* 标小智无界黑 */
+@font-face {
+  font-family: "b21c44e04ece71eda004919499306304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E6%A0%87%E5%B0%8F%E6%99%BA%E6%97%A0%E7%95%8C%E9%BB%91.otf");
+  font-display: block;
+}
+/* 江城解星体 */
+@font-face {
+  font-family: "eff16e804ece71eda004919499306304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E6%B1%9F%E5%9F%8E%E8%A7%A3%E6%98%9F%E4%BD%93V1.3.ttf");
+  font-display: block;
+}
+/* 刘欢卡通手书 */
+@font-face {
+  font-family: "f8a66f804ece71eda004919499306304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E5%88%98%E6%AC%A2%E5%8D%A1%E9%80%9A%E6%89%8B%E4%B9%A62.0.ttf");
+  font-display: block;
+}
+/* 猫啃网烟波宋-H */
+@font-face {
+  font-family: "a7b505e0acda71ed80d9e6f7d5596304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E7%8C%AB%E5%95%83%E7%BD%91%E7%83%9F%E6%B3%A2%E5%AE%8B-H.ttf");
+  font-display: block;
+}
+/* 优设标题黑 */
+@font-face {
+  font-family: "bb1f1da0acda71ed80d9e6f7d5596304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/typeface/ttf/Downloads/%E4%BC%98%E8%AE%BE%E6%A0%87%E9%A2%98%E9%BB%91.ttf");
+  font-display: block;
+}
+/* 源意明体 */
+@font-face {
+  font-family: "54e27f305b8271ee8573f7e7f6586304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/%E6%BA%90%E6%84%8F%E6%98%8E%E4%BD%93.ttf");
+  font-display: block;
+}
+/* 清松手寫體 */
+@font-face {
+  font-family: "53ebea305b8271ee8562f6f7d74b6304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/%E6%B8%85%E6%9D%BE%E6%89%8B%E5%AF%AB%E9%AB%94.ttf");
+  font-display: block;
+}
+/* 小可奶酪体 */
+@font-face {
+  font-family: "529904605b8271ee8573f7e7f6586304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/%E5%B0%8F%E5%8F%AF%E5%A5%B6%E9%85%AA%E4%BD%93.ttf");
+  font-display: block;
+}
+/* 站酷快乐体2016修订版 */
+@font-face {
+  font-family: "504cca705b8271ee8562f6f7d74b6304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/%E7%AB%99%E9%85%B7%E5%BF%AB%E4%B9%90%E4%BD%932016%E4%BF%AE%E8%AE%A2%E7%89%88.ttf");
+  font-display: block;
+}
+/* 清松手寫體-测试环境 */
+@font-face {
+  font-family: "0a9ca1905b8171ee8f2be6f6c4796304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/%E6%B8%85%E6%9D%BE%E6%89%8B%E5%AF%AB%E9%AB%94.ttf");
+  font-display: block;
+}
+/* 站酷小薇LOGO体--测试环境 */
+@font-face {
+  font-family: "zkxw_logo";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/sumvideo/font/%E7%AB%99%E9%85%B7%E5%B0%8F%E8%96%87LOGO%E4%BD%93.otf");
+  font-display: block;
+}
+/* AlimamaFangYuanTiVF-Thin */
+@font-face {
+  font-family: "1d41637002b771ef81fae7f7c7486304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/fontd47a430940e8477ebe6fb56658476380.ttf");
+  font-display: block;
+}
+/* Alimama_DongFangDaKai_Regular */
+@font-face {
+  font-family: "30f3a7c002b771ef81fbe7f7c7486304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font78076853abc44cb28d426ca8d3697f82.ttf");
+  font-display: block;
+}
+/* MiSans-Bold */
+@font-face {
+  font-family: "32d1687002b771ef81dfe7e7d46a6304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/fontae0d2bf9176847538777ba5cef33c2eb.ttf");
+  font-display: block;
+}
+/* MiSans-Medium */
+@font-face {
+  font-family: "34e4910002b771ef81fbe7f7c7486304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font309145d366d14dc9b258ab433181d3af.ttf");
+  font-display: block;
+}
+/* 仓迹高德国妙黑 */
+@font-face {
+  font-family: "36a3cd3002b771ef81e0e7e7d46a6304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font113e370c59124ebd814b627c59a4a695.otf");
+  font-display: block;
+}
+/* 三极行楷简体-粗 */
+@font-face {
+  font-family: "3627232002b771ef81fbe7f7c7486304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/fonteb801d593bc1470f8b940d4fd1a0676f.ttf");
+  font-display: block;
+}
+/* 优设标题圆 */
+@font-face {
+  font-family: "36f45e3002b771ef81fbe7f7c7486304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font2cb45c2348474774bc03c8bbd759db5f.otf");
+  font-display: block;
+}
+/* 创客贴金刚体 */
+@font-face {
+  font-family: "37ae385002b771ef818af6f7d6496304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font09e6a8f47163404a9a6e7e67870bba4c.otf");
+  font-display: block;
+}
+/* 联盟起艺卢帅正锐黑体 */
+@font-face {
+  font-family: "39a06b6002b771ef818af6f7d6496304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font0d5e16f8e1df4bc0b4850010142a7323.ttf");
+  font-display: block;
+}
+/* Fontquan-XinYiGuanHeiTi-Regular */
+@font-face {
+  font-family: "319eb4d002b771ef81dfe7e7d46a6304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font301fb1380beb4a33bf26ae7dd0a6e2d1.ttf");
+  font-display: block;
+}
+/* MiSans-Light */
+@font-face {
+  font-family: "339ccec002b771ef8189f6f7d6496304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font383f913cfb3c4c72ac3a6a6e5a8e4909.ttf");
+  font-display: block;
+}
+/* 极影毁片和圆 */
+@font-face {
+  font-family: "395cf9c002b771ef8196f6e6f45b6304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font015e9e4182754096b812edf48e63be8c.ttf");
+  font-display: block;
+}
+/* kuaikanshijieti */
+@font-face {
+  font-family: "32069e6002b771ef81dfe7e7d46a6304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/fontf5db732e925d4a579d67fe83248dec18.ttf");
+  font-display: block;
+}
+/* 三极力量体简-粗 */
+@font-face {
+  font-family: "35629aa002b771ef8189f6f7d6496304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font17fbdcdd881f4b0d9bd510023fc2b420.ttf");
+  font-display: block;
+}
+
+/* FZLTCXHJW */
+@font-face {
+  font-family: "a5a4a330119e71efa1bfe7e7d46a6304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font/47bed940f8264c6ab6ad38ef4b1845a4.TTF");
+  font-display: block;
+}
+
+/* FZLTDHJW */
+@font-face {
+  font-family: "a6b269b0119e71efa124e7f7c7486304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font/57caf9790a064169bb80942efe04662a.TTF");
+  font-display: block;
+}
+
+/* FZLTHJW */
+@font-face {
+  font-family: "a71a2c30119e71efa124e7f7c7486304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font/7654d7255ed348b7b3012590e923139a.TTF");
+  font-display: block;
+}
+
+/* FZLTXHJW */
+@font-face {
+  font-family: "a778ee00119e71efa124e7f7c7486304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font/e1b47843bfde4c0fb32087d9bf1c2a01.TTF");
+  font-display: block;
+}
+
+/* FZLTZHJW */
+@font-face {
+  font-family: "a7de8da0119e71ef9f6af6f7d6496304";
+  src: url("https://tagvvcloud-material-center-test.oss-cn-shanghai.aliyuncs.com/xm/font/9b4d6a89e9304aab957c4a8d048f25a8.TTF");
+  font-display: block;
+}
+
+

@@ -1,0 +1,281 @@
+*{
+  box-sizing: border-box;
+  }
+  .head_wrap{
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 4px;
+    box-sizing: border-box;
+  
+    .title_wrap{
+      display: flex;
+      align-items: center;
+      // margin-bottom: 20px;
+  
+      > h4{
+        height: 25px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #303133;
+        line-height: 25px;
+        margin-right: 120px;
+      }
+    }
+    .el-select{
+      margin-right: 20px;
+    }
+  }
+  .tooltip_wrap{
+    max-width: 400px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 18px;
+  }
+  .table_wrap{
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 4px;
+    padding: 24px;
+    box-sizing: border-box;
+    margin-top: 16px;
+  
+    > .table_title{
+      display: flex;
+      align-items: center;
+      margin-bottom: 22px;
+      justify-content: space-between;
+  
+      > p{
+        display: flex;
+        align-items: center;
+        > span{
+          height: 20px;
+          font-size: 14px;
+          font-weight: 400;
+          color: #909399;
+          line-height: 20px;
+        }
+        > .time{
+          margin-right: 24px;
+        }
+        > img{
+          width: 16px;
+          height: 16px;
+          margin-left: 8px;
+        }
+      }
+    }
+    .certification_img{
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      left: 0;
+      top: 0;
+    }
+    .account_wrap{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+  
+      > .avatar_wrap{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 56px;
+        height: 56px;
+        >.private_account{
+          bottom:6px;
+          right:5px;
+        }
+        > .avatar_icon{
+          width: 40px;
+          height: 40px;
+          vertical-align: top;
+          border-radius: 50%;
+          box-sizing: border-box;
+          object-fit: cover;
+        }
+        // > .avatar_icon_active{
+        //   border: 1px solid #364FCD;
+        // }
+        > .expired_img{
+          width: 14px;
+          height: 14px;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
+      }
+      > .account_info{
+        display: flex;
+        flex-direction: column;
+        margin-left: 8px;
+        width: calc(100% - 64px);
+  
+        > div{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          // justify-content: space-between;
+  
+          span{
+            max-width: 106.91px;
+            min-width:10px;
+            height: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #303133;
+            line-height: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 5555;
+          }
+          > .brand_img{
+            width: 32px;
+            height: 14px;
+            margin-left: 4px;
+            border-radius: 0;
+          }
+          img{
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-left: 4px;
+          }
+        }
+        p{
+          width: 100%;
+          white-space: nowrap;
+          margin-top: 4px;
+          display: flex;
+          align-items: center;
+  
+          > span{
+            max-width: calc(100% - 24px);
+            white-space: nowrap;
+            overflow: hidden;
+            height: 17px;
+            font-size: 12px;
+            font-weight: 400;
+            color: #909399;
+            line-height: 17px;
+          }
+          > .qrcode_img{
+            width: 18px;
+            height: 18px;
+            margin-left: 6px;
+          }
+        }
+        .group_list{
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: flex-start;
+          .new_group_name{
+            width: max-content;
+            max-width: 70px;
+          }
+        }
+        .pre_time{
+          white-space: nowrap;
+          overflow: hidden;
+          height: 17px;
+          font-size: 12px;
+          font-weight: 400;
+          color: #909399;
+          line-height: 17px;
+          margin-top: 4px;
+        }
+      }
+    }
+    .user_wrap{
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: max-content;
+      max-width: 100%;
+  
+      > img{
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      > span{
+        width: calc(100% - 96px);
+        height: 20px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #303133;
+        line-height: 20px;
+        white-space: nowrap;
+        margin-left: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+      }
+      > .fs_icon{
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        bottom: 0;
+        left: 22px;
+      }
+      .default_photo{
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+    }
+    .user_wrap_cursor{
+      cursor: pointer;
+    }
+  }
+  .row_overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-wrap: break-word;
+  }
+  // .xm_search .search_item .item_label{
+  //   flex-basis: 84px;
+  //   width: 84px;
+  // }
+  .xm_search .search_item:last-child{
+    flex-basis: 300px;
+  }
+  // .qr_mark{
+  //   height: 18px;
+  //   line-height: 18px;
+  //   font-size: 14px;
+  //   text-align: center;
+  // }
+  .new_group_name{
+    height: 20px;
+    padding: 0px 5px;
+    margin-left: 8px;
+    background: #dce1f8;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #364FCD;
+    line-height: 20px;
+    
+  }
+  .group_box{
+    max-width: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    .new_group_name{
+      margin: 4px;
+    }
+  }
