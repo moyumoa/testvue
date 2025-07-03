@@ -223,16 +223,11 @@ const expandedKeys = ref(['0']) // 默认展开的id
 function init() {
   console.log('init', props.chooseId, isNotEmpty(props.chooseId))
   if (isNotEmpty(props.chooseId)) {
-    if (showDropDown.value) {
+    chooseId.value = props.chooseId
+    expandedKeys.value = props.expandIds && props.expandIds.length > 0 ? props.expandIds : ['0']
+    nextTick(() => {
       setCurrentFun(props.chooseId)
-    } else if (showRadio.value) {
-      chooseId.value = props.chooseId
-      setCurrentFun(props.chooseId)
-      // 目前不支持
-      expandedKeys.value = props.expandIds && props.expandIds.length > 0 ? props.expandIds : ['0']
-    } else {
-      chooseId.value = props.chooseId
-    }
+    })
   } else {
     if (showDropDown.value) {
       setCurrentFun('0')
@@ -403,6 +398,7 @@ const clickTreeFun = (e, node, TreeNode, eventData) => {
   chooseId.value = e.id
   choosePid.value = e.pid
   chooseInfo.value = node.data
+  sessionStorage.setItem('selectMaterialFolderId', e.id)
 }
 // 获取所有父级ID
 const getAllParentIds = id => {
@@ -420,9 +416,11 @@ const getAllParentIds = id => {
 
 // 选中的id 列表
 const clickSearchFun = throttle(e => {
+  getAllParentIds(e.id)
   chooseId.value = e.id
   choosePid.value = e.pid
   chooseInfo.value = e
+  sessionStorage.setItem('selectMaterialFolderId', e.id)
 }, 300)
 
 const rightActionId = ref('0') // 右侧显示操作区的ID
